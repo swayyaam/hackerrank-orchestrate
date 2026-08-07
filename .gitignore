@@ -1,7 +1,7 @@
 # ============================================================================
-# Single .gitignore for the whole monorepo (covers both project subdirectories).
+# Single .gitignore for the whole monorepo (covers every project subdirectory).
 # Patterns without a leading slash match at any depth, so they apply inside
-# hackerrank-orchestrate-may/ and hackerrank-orchestrate-june/ alike.
+# hackerrank-orchestrate-may/, -june/ and -august/ alike.
 # ============================================================================
 
 # --- Secrets (never commit; keep the .example templates) ---
@@ -51,8 +51,15 @@ failed_tickets.log
 _determinism_*.csv
 *.sqlite
 *.db
+# August's timestamped per-run output dirs (top-level runs/ and code/runs/).
+runs/
 
 # --- June project: generated outputs ---
 # (May's support_tickets/output.csv is a kept deliverable, so it is NOT ignored.)
 hackerrank-orchestrate-june/output.csv
 hackerrank-orchestrate-june/code/artifacts/
+
+# --- August project: generated outputs ---
+# (dataset/output.csv and submission/ are kept deliverables, so NOT ignored.)
+# The generated cache is code/.cache/, already covered by the .cache/ rule above.
+# Do NOT ignore code/cache/ — that is the cache *module's* source.

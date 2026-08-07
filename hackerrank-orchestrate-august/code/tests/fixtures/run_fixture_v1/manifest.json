@@ -1,0 +1,23 @@
+{
+  "config_hash": "abcdef0123",
+  "config_snapshot": {
+    "PolicyConfig": {
+      "FORWARD_CHAIN_THRESHOLD": 5
+    }
+  },
+  "created_at_utc": "2026-08-01T00:00:00Z",
+  "dataset_fingerprint": "fixture-fingerprint",
+  "eval_rows_expected": 0,
+  "eval_rows_written": 0,
+  "failures": [],
+  "git_commit": "fixture",
+  "git_dirty": false,
+  "media_extraction_version": null,
+  "mode": "offline",
+  "model_id": "",
+  "prompt_template_version": null,
+  "rows_expected": 4,
+  "rows_written": 4,
+  "run_id": "fixture-v1",
+  "schema_version": 1
+}

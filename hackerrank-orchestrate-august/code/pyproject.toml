@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "message-notification-router"
+version = "0.1.0"
+description = "Message Notification Router for WhatsApp — HackerRank Orchestrate"
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7",
+    "pandas>=2.2",
+    # Provider SDKs for --allow-network. Imported lazily inside
+    # perception/client.py, so the package stays importable and the whole test
+    # suite stays runnable if either is absent.
+    "anthropic>=0.40",   # image description
+    "sarvamai>=0.1.28",  # voice-note transcription (saaras:v3)
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.setuptools]
+# `code/` is the SOURCE ROOT, not a package. Every entry below is a top-level
+# package inside it, so imports read `from policy.engine import decide`, and the
+# suite runs with `code/` as the working directory referencing nothing above it.
+#
+# `code/` is deliberately NOT itself a package: a `code/__init__.py` would make
+# this directory shadow the standard-library `code` module whenever the parent
+# is on sys.path, which breaks pdb — and therefore pytest — on Python 3.14.
+packages = [
+    "compose",
+    "emit",
+    "features",
+    "ingest",
+    "media",
+    "metrics",
+    "perception",
+    "policy",
+    "scoring",
+]
+py-modules = ["config", "errors", "logging_setup", "main", "pipeline", "schemas"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = ["docs"]

@@ -1,0 +1,1135 @@
+{
+  "consistency": {
+    "divergent_groups": [
+      {
+        "actions": {
+          "digest": 2,
+          "mute": 1
+        },
+        "distinguished_by_proposal": false,
+        "distinguishing_codes": [
+          "PROMOTION_OPT_OUT"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "business",
+          "integrity_state": "clean",
+          "proposed_message_type": "promotion",
+          "sender_relationship_class": "established_neutral"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_035",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_065",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "mute",
+            "confidence": 0.72,
+            "message_id": "msg_084",
+            "override_codes_fired": [
+              "PROMOTION_OPT_OUT",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          }
+        ],
+        "size": 3
+      },
+      {
+        "actions": {
+          "digest": 1,
+          "notify": 1
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "group",
+          "integrity_state": "clean",
+          "proposed_message_type": "event",
+          "sender_relationship_class": "established_neutral"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_007",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.62,
+            "message_id": "msg_081",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 2
+      },
+      {
+        "actions": {
+          "digest": 4,
+          "notify": 1
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "DIRECT_ADDRESS_GUARD",
+          "GROUP_MUTE_CAP",
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "group",
+          "integrity_state": "clean",
+          "proposed_message_type": "personal",
+          "sender_relationship_class": "established_neutral"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_009",
+            "override_codes_fired": [
+              "GROUP_MUTE_CAP",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_032",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.75,
+            "message_id": "msg_068",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.66,
+            "message_id": "msg_071",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.62,
+            "message_id": "msg_083",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 5
+      },
+      {
+        "actions": {
+          "digest": 1,
+          "notify": 1
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "DIRECT_ADDRESS_GUARD",
+          "DIRECT_REQUEST_FLOOR",
+          "GROUP_MUTE_CAP",
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "group",
+          "integrity_state": "clean",
+          "proposed_message_type": "event",
+          "sender_relationship_class": "established_receptive"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.67,
+            "message_id": "msg_047",
+            "override_codes_fired": [
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.71,
+            "message_id": "msg_056",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "GROUP_MUTE_CAP",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 2
+      },
+      {
+        "actions": {
+          "digest": 1,
+          "notify": 3
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "DIRECT_REQUEST_FLOOR",
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "group",
+          "integrity_state": "clean",
+          "proposed_message_type": "personal",
+          "sender_relationship_class": "established_receptive"
+        },
+        "members": [
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_002",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.67,
+            "message_id": "msg_033",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_055",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_057",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 4
+      },
+      {
+        "actions": {
+          "mute": 1,
+          "notify": 8
+        },
+        "distinguished_by_proposal": false,
+        "distinguishing_codes": [
+          "DIRECT_ADDRESS_GUARD",
+          "DIRECT_REQUEST_FLOOR",
+          "FREQUENTLY_FORWARDED_BROADCAST"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "group",
+          "integrity_state": "clean",
+          "proposed_message_type": "urgent",
+          "sender_relationship_class": "established_receptive"
+        },
+        "members": [
+          {
+            "action": "notify",
+            "confidence": 0.71,
+            "message_id": "msg_001",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.71,
+            "message_id": "msg_005",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "TIME_CRITICAL_FLOOR",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_037",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_042",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "mute",
+            "confidence": 0.65,
+            "message_id": "msg_043",
+            "override_codes_fired": [
+              "FREQUENTLY_FORWARDED_BROADCAST",
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.71,
+            "message_id": "msg_045",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.71,
+            "message_id": "msg_077",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "TIME_CRITICAL_FLOOR",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_080",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.66,
+            "message_id": "msg_082",
+            "override_codes_fired": [
+              "TIME_CRITICAL_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 9
+      },
+      {
+        "actions": {
+          "digest": 2,
+          "notify": 2
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "DIRECT_REQUEST_FLOOR",
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "personal",
+          "integrity_state": "clean",
+          "proposed_message_type": "personal",
+          "sender_relationship_class": "established_receptive"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.67,
+            "message_id": "msg_097",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_098",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          },
+          {
+            "action": "digest",
+            "confidence": 0.67,
+            "message_id": "msg_099",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.75,
+            "message_id": "msg_102",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "DIRECT_REQUEST_FLOOR",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 4
+      },
+      {
+        "actions": {
+          "digest": 1,
+          "notify": 1
+        },
+        "distinguished_by_proposal": true,
+        "distinguishing_codes": [
+          "MODEL_PROPOSAL"
+        ],
+        "explained": true,
+        "key": {
+          "conversation_type": "personal",
+          "integrity_state": "clean",
+          "proposed_message_type": "personal",
+          "sender_relationship_class": "unestablished"
+        },
+        "members": [
+          {
+            "action": "digest",
+            "confidence": 0.58,
+            "message_id": "msg_090",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "COLD_SENDER_CAP",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "digest"
+          },
+          {
+            "action": "notify",
+            "confidence": 0.51,
+            "message_id": "msg_096",
+            "override_codes_fired": [
+              "DIRECT_ADDRESS_GUARD",
+              "COLD_SENDER_CAP",
+              "PERCEPTION_ACCEPTED"
+            ],
+            "proposed_action": "notify"
+          }
+        ],
+        "size": 2
+      }
+    ],
+    "grouping_key": [
+      "conversation_type",
+      "sender_relationship_class",
+      "proposed_message_type",
+      "integrity_state"
+    ],
+    "groups_diverging_without_code_difference": 0,
+    "groups_total": 42,
+    "groups_with_divergence": 8,
+    "n_rows": 110
+  },
+  "generated_at_utc": "2026-08-02T10:12:06.170378Z",
+  "label_free": {
+    "action_distribution": {
+      "counts": {
+        "digest": 27,
+        "mute": 55,
+        "notify": 28
+      },
+      "entropy_bits": 1.4999,
+      "entropy_normalised": 0.9463,
+      "shares": {
+        "digest": 0.2455,
+        "mute": 0.5,
+        "notify": 0.2545
+      }
+    },
+    "budget": {
+      "tokens": {
+        "input_mean_per_row": 0.0,
+        "input_p95": 0.0,
+        "input_total": 0,
+        "output_mean_per_row": 0.0,
+        "output_p95": 0.0,
+        "output_total": 0
+      },
+      "wall_clock_ms": {
+        "mean_per_row": 4.021,
+        "p95": 21.952,
+        "total": 442.286
+      }
+    },
+    "cache": {
+      "media_hit_rate": 1.0,
+      "media_outcomes": {
+        "corrupt": 0,
+        "hit": 23,
+        "miss": 0,
+        "n/a": 87
+      },
+      "perception_hit_rate": 1.0,
+      "perception_outcomes": {
+        "corrupt": 0,
+        "hit": 110,
+        "miss": 0,
+        "n/a": 0
+      },
+      "rows_served_entirely_from_cache": 110
+    },
+    "confidence": {
+      "by_action": {
+        "digest": {
+          "max": 0.75,
+          "mean": 0.6922,
+          "median": 0.67,
+          "min": 0.58,
+          "p25": 0.67,
+          "p75": 0.75,
+          "std": 0.0538
+        },
+        "mute": {
+          "max": 0.95,
+          "mean": 0.8011,
+          "median": 0.82,
+          "min": 0.54,
+          "p25": 0.74,
+          "p75": 0.85,
+          "std": 0.0872
+        },
+        "notify": {
+          "max": 0.75,
+          "mean": 0.6996,
+          "median": 0.71,
+          "min": 0.51,
+          "p25": 0.71,
+          "p75": 0.75,
+          "std": 0.0623
+        }
+      },
+      "mean_on_not_overridden": 0.6965,
+      "mean_on_overridden": 0.8238,
+      "overall": {
+        "max": 0.95,
+        "mean": 0.7485,
+        "median": 0.75,
+        "min": 0.51,
+        "p25": 0.71,
+        "p75": 0.8175,
+        "std": 0.0909
+      }
+    },
+    "evidence": {
+      "citation_count_histogram": {
+        "0": 1,
+        "1": 100,
+        "2": 9
+      },
+      "mean_citations_per_row": 1.0727,
+      "rows_with_citation": 109,
+      "rows_with_none": 1,
+      "share_none": 0.0091,
+      "share_with_citation": 0.9909,
+      "tier_counts": {
+        "0": 1,
+        "1": 5,
+        "2": 13,
+        "3": 91
+      },
+      "ungrounded_citation_count": 0,
+      "ungrounded_rows": []
+    },
+    "integrity_warnings": {
+      "counts_by_type": {
+        "BUSINESS_DOMAIN_MISMATCH": 11,
+        "BUSINESS_IDENTITY_INCONSISTENT": 7,
+        "FENCE_TOKEN_IN_UNTRUSTED_INPUT": 5,
+        "MEDIA_CONTRADICTS_TEXT": 5
+      },
+      "rows_with_any": 20
+    },
+    "media": {
+      "failures_by_cause": {
+        "duration_exceeded": 1
+      },
+      "images_analysed": 15,
+      "rows_media_failed": 1,
+      "rows_media_unread": 1,
+      "rows_with_media": 23,
+      "voice_notes_transcribed": 7
+    },
+    "message_type_distribution": {
+      "counts": {
+        "business_update": 9,
+        "event": 7,
+        "forward": 8,
+        "greeting": 1,
+        "payment": 5,
+        "personal": 17,
+        "promotion": 14,
+        "scam": 33,
+        "spam": 0,
+        "unknown": 1,
+        "urgent": 15
+      },
+      "entropy_bits": 2.8573,
+      "entropy_normalised": 0.8259,
+      "shares": {
+        "business_update": 0.0818,
+        "event": 0.0636,
+        "forward": 0.0727,
+        "greeting": 0.0091,
+        "payment": 0.0455,
+        "personal": 0.1545,
+        "promotion": 0.1273,
+        "scam": 0.3,
+        "spam": 0.0,
+        "unknown": 0.0091,
+        "urgent": 0.1364
+      }
+    },
+    "n_rows": 110,
+    "override_codes": {
+      "applied_counts": {
+        "COERCIVE_PAYMENT": 3,
+        "COLD_SENDER_CAP": 0,
+        "CREDENTIAL_SOLICITATION": 14,
+        "DIRECT_ADDRESS_GUARD": 0,
+        "DIRECT_REQUEST_FLOOR": 0,
+        "FREQUENTLY_FORWARDED_BROADCAST": 2,
+        "GROUP_MUTE_CAP": 0,
+        "IMPERSONATION": 5,
+        "PERCEPTION_ACCEPTED": 65,
+        "PROMOTION_OPT_OUT": 6,
+        "REPEAT_DISMISSAL": 7,
+        "ROUTER_DIRECTIVE": 1,
+        "TIME_CRITICAL_FLOOR": 0,
+        "UNAUTHORIZED_PAYMENT_REQUEST": 4,
+        "UNSAFE_INSTRUCTION": 1
+      },
+      "fire_counts": {
+        "COERCIVE_PAYMENT": 5,
+        "COLD_SENDER_CAP": 6,
+        "CREDENTIAL_SOLICITATION": 14,
+        "DIRECT_ADDRESS_GUARD": 32,
+        "DIRECT_REQUEST_FLOOR": 13,
+        "FREQUENTLY_FORWARDED_BROADCAST": 9,
+        "GROUP_MUTE_CAP": 11,
+        "IMPERSONATION": 7,
+        "PERCEPTION_ACCEPTED": 82,
+        "PROMOTION_OPT_OUT": 6,
+        "REPEAT_DISMISSAL": 21,
+        "ROUTER_DIRECTIVE": 5,
+        "TIME_CRITICAL_FLOOR": 18,
+        "UNAUTHORIZED_PAYMENT_REQUEST": 9,
+        "UNSAFE_INSTRUCTION": 1
+      },
+      "never_fired": [],
+      "rows_with_multiple_firings": 78
+    },
+    "perception_health": {
+      "hard_parse_failure_count": 0,
+      "rows_failed_total": 0,
+      "rows_with_retry": 0,
+      "schema_retry_count": 0
+    },
+    "proposal_override": {
+      "by_direction": {
+        "demoted": 15,
+        "escalated": 0,
+        "type_only": 0,
+        "unchanged": 95
+      },
+      "rows_overridden": 15,
+      "share_overridden": 0.1364,
+      "transition_matrix": {
+        "digest": {
+          "digest": 27,
+          "mute": 12,
+          "notify": 0
+        },
+        "mute": {
+          "digest": 0,
+          "mute": 40,
+          "notify": 0
+        },
+        "notify": {
+          "digest": 0,
+          "mute": 3,
+          "notify": 28
+        }
+      }
+    },
+    "reason_health": {
+      "char_length": {
+        "max": 117.0,
+        "mean": 96.7091,
+        "median": 101.0,
+        "min": 59.0,
+        "p25": 90.0,
+        "p75": 107.5,
+        "std": 12.6867
+      },
+      "rows_outside_register_bounds": 0,
+      "rows_warned_without_integrity_reason": [],
+      "share_citing_concrete_evidence": 0.6182,
+      "share_naming_a_decisive_factor": 1.0,
+      "share_referencing_integrity_when_warned": 1.0
+    }
+  },
+  "labeled": {
+    "action": {
+      "accuracy": 0.8333,
+      "confusion_matrix": {
+        "labels": [
+          "notify",
+          "digest",
+          "mute"
+        ],
+        "matrix": [
+          [
+            6,
+            3,
+            0
+          ],
+          [
+            1,
+            10,
+            0
+          ],
+          [
+            0,
+            1,
+            9
+          ]
+        ],
+        "rows_are_truth": true
+      },
+      "correct": 25,
+      "incorrect": 5,
+      "macro_f1": 0.8325,
+      "per_class": {
+        "digest": {
+          "f1": 0.8,
+          "precision": 0.7143,
+          "recall": 0.9091,
+          "support": 11
+        },
+        "mute": {
+          "f1": 0.9474,
+          "precision": 1.0,
+          "recall": 0.9,
+          "support": 10
+        },
+        "notify": {
+          "f1": 0.75,
+          "precision": 0.8571,
+          "recall": 0.6667,
+          "support": 9
+        }
+      }
+    },
+    "calibration": {
+      "brier_definition": "mean((confidence - is_action_correct)^2), one-vs-rest on the predicted action",
+      "brier_score": 0.1385,
+      "bucket_edges": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "buckets": [
+        {
+          "accuracy": null,
+          "gap": null,
+          "lower": 0.0,
+          "mean_confidence": null,
+          "n": 0,
+          "upper": 0.2
+        },
+        {
+          "accuracy": null,
+          "gap": null,
+          "lower": 0.2,
+          "mean_confidence": null,
+          "n": 0,
+          "upper": 0.4
+        },
+        {
+          "accuracy": 0.5,
+          "gap": 0.08,
+          "lower": 0.4,
+          "mean_confidence": 0.58,
+          "n": 2,
+          "upper": 0.6
+        },
+        {
+          "accuracy": 0.8261,
+          "gap": 0.1204,
+          "lower": 0.6,
+          "mean_confidence": 0.7057,
+          "n": 23,
+          "upper": 0.8
+        },
+        {
+          "accuracy": 1.0,
+          "gap": 0.126,
+          "lower": 0.8,
+          "mean_confidence": 0.874,
+          "n": 5,
+          "upper": 1.0
+        }
+      ],
+      "expected_calibration_error": 0.1187,
+      "indicative_only": true
+    },
+    "evidence_overlap": {
+      "any_overlap": 16,
+      "both_none": 0,
+      "exact_set_match": 13,
+      "mean_jaccard": 0.4722,
+      "mean_precision": 0.5,
+      "mean_recall": 0.4833,
+      "predicted_cited_truth_none": 2,
+      "predicted_none_truth_cited": 0,
+      "rows_compared": 30
+    },
+    "joint_accuracy": {
+      "accuracy": 0.7,
+      "both_correct": 21
+    },
+    "message_type": {
+      "accuracy": 0.8,
+      "confusion_matrix": {
+        "labels": [
+          "personal",
+          "urgent",
+          "event",
+          "payment",
+          "business_update",
+          "promotion",
+          "greeting",
+          "forward",
+          "spam",
+          "scam",
+          "unknown"
+        ],
+        "matrix": [
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "rows_are_truth": true
+      },
+      "correct": 24,
+      "incorrect": 6,
+      "macro_f1": 0.629,
+      "per_class": {
+        "business_update": {
+          "f1": 0.8571,
+          "precision": 0.75,
+          "recall": 1.0,
+          "support": 3
+        },
+        "event": {
+          "f1": 0.5714,
+          "precision": 0.6667,
+          "recall": 0.5,
+          "support": 4
+        },
+        "forward": {
+          "f1": 0.6667,
+          "precision": 0.5,
+          "recall": 1.0,
+          "support": 1
+        },
+        "greeting": {
+          "f1": 0.6667,
+          "precision": 1.0,
+          "recall": 0.5,
+          "support": 2
+        },
+        "payment": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "personal": {
+          "f1": 0.8889,
+          "precision": 0.8,
+          "recall": 1.0,
+          "support": 4
+        },
+        "promotion": {
+          "f1": 1.0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "support": 6
+        },
+        "scam": {
+          "f1": 0.8889,
+          "precision": 0.8,
+          "recall": 1.0,
+          "support": 4
+        },
+        "spam": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "unknown": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "urgent": {
+          "f1": 0.75,
+          "precision": 0.75,
+          "recall": 0.75,
+          "support": 4
+        }
+      }
+    },
+    "n_rows": 30,
+    "noise_floor": {
+      "note": "n=30. A single row flip moves any rate by 3.33pp. Changes below 2 rows are not described as improvements.",
+      "one_row_pp": 3.33,
+      "reportable_threshold_pp": 6.66,
+      "reportable_threshold_rows": 2
+    }
+  },
+  "manifest": {
+    "config_hash": "1cc7a1fbd52f18bf64146aacbfce3044aa2f5d48cc1a900806cb22ece672b412",
+    "created_at_utc": "2026-08-02T10:07:25.149076Z",
+    "dataset_fingerprint": "dd4cc690528db62be10f7877857a842a53806aa1c6802643e220de35519835b1",
+    "eval_rows_expected": 30,
+    "eval_rows_written": 30,
+    "failures": [],
+    "git_commit": "b2c4b904580c04cc3a66a82670b07838daf34a10",
+    "git_dirty": true,
+    "media_extraction_version": "1.0.0",
+    "mode": "offline",
+    "model_id": "claude-sonnet-5",
+    "prompt_template_version": "1.3.0",
+    "rows_expected": 110,
+    "rows_written": 110,
+    "run_id": "20260802T100724Z-b2c4b90-1cc7a1",
+    "schema_version": 2
+  },
+  "run_id": "20260802T100724Z-b2c4b90-1cc7a1",
+  "schema_version": 2
+}

@@ -1,0 +1,113 @@
+========================================================================
+ RUN  20260802T100724Z-b2c4b90-1cc7a1   offline   110 rows + 30 eval
+ cfg  1cc7a1   prompt 1.3.0   media 1.0.0   model claude-sonnet-5
+========================================================================
+
+LABEL-FREE  (110 rows — full target set)
+------------------------------------------------------------------------
+ action        notify 28 (25.4%)  digest 27 (24.6%)  mute 55 (50.0%)
+               entropy 1.50 bits / 1.58 max  (norm 0.95)
+ type          scam 33  personal 17  urgent 15  promotion 14
+               business_update 9  forward 8  event 7  payment 5
+               greeting 1  unknown 1
+               entropy 2.86 / 3.46  (norm 0.83)
+
+ overrides     15 rows overridden (13.6%)   demoted 15  escalated 0  type-only 0
+               CREDENTIAL_SOLICITATION           14
+               ROUTER_DIRECTIVE                   5
+               IMPERSONATION                      7
+               COERCIVE_PAYMENT                   5
+               UNSAFE_INSTRUCTION                 1
+               UNAUTHORIZED_PAYMENT_REQUEST       9
+               DIRECT_ADDRESS_GUARD              32
+               PROMOTION_OPT_OUT                  6
+               REPEAT_DISMISSAL                  21
+               FREQUENTLY_FORWARDED_BROADCAST     9
+               GROUP_MUTE_CAP                    11
+               COLD_SENDER_CAP                    6
+               TIME_CRITICAL_FLOOR               18
+               DIRECT_REQUEST_FLOOR              13
+               PERCEPTION_ACCEPTED               82
+               78 rows had 2+ rules fire
+
+ evidence      109/110 cited (99.1%)   1 none   mean 1.07/row
+               tier3 91  tier2 13  tier1 5  tier0 1
+               ungrounded citations: 0   [OK]
+
+ integrity     20 warnings, 0 unexplained      perception: 0 retries, 0 parse failures   [OK]
+ confidence    0.51 – 0.95   mean 0.75   median 0.75
+               notify 0.70   digest 0.69   mute 0.80
+               overridden 0.82  vs  accepted 0.70
+ media         15 images, 7 voice analysed of 23 media rows
+               failures: duration_exceeded=1
+               media_failed 1   media_unread 1
+ cache         media 23/23   perception 110/110   fully-cached rows 110
+ budget        0 in / 0 out tokens, 0.4s wall
+ reason        59–117 chars, median 101   0 outside register   [OK]
+               cites concrete evidence 61.8%   names integrity when warned 100.0%
+               names a decisive factor 100.0%
+
+LABEL-DEPENDENT  (30 rows — INDICATIVE ONLY, 1 row = 3.33pp)
+------------------------------------------------------------------------
+ action        accuracy 25/30 = 83.3%      macro F1 0.83
+                        pred→   notify   digest     mute
+               truth notify       6        3        0
+                     digest       1       10        0
+                     mute         0        1        9
+ type          accuracy 24/30 = 80.0%      macro F1 0.63
+ joint         21/30 = 70.0%
+ evidence      exact 13/30  any overlap 16/30  mean jaccard 0.47
+               both-none 0   pred-none/truth-cited 0   pred-cited/truth-none 2
+ calibration   ECE 0.119   Brier 0.139     (indicative — see note)
+               [0.4,0.6]  n= 2  conf 0.58  acc 0.50  gap 0.08
+               [0.6,0.8]  n=23  conf 0.71  acc 0.83  gap 0.12
+               [0.8,1.0]  n= 5  conf 0.87  acc 1.00  gap 0.13
+ [!] n=30. A single row flip moves any rate by 3.33pp. Changes below 2 rows are not described as improvements.
+
+CONSISTENCY  (110 rows, no labels)
+------------------------------------------------------------------------
+ 42 groups, 8 with divergent actions, 0 unexplained   [OK]
+
+ group  conversation=business  sender=established_neutral
+        proposed=promotion  integrity=clean          (3 rows)
+        digest 2 / mute 1     distinguishing: PROMOTION_OPT_OUT
+          msg_035    digest  ['PERCEPTION_ACCEPTED']            conf 0.75
+          msg_065    digest  ['PERCEPTION_ACCEPTED']            conf 0.75
+          msg_084    mute    ['PROMOTION_OPT_OUT', 'PERCEPTION_ACCEPTED'] conf 0.72
+
+ group  conversation=group  sender=established_neutral
+        proposed=event  integrity=clean          (2 rows)
+        digest 1 / notify 1     distinguishing: MODEL_PROPOSAL
+          msg_007    digest  ['PERCEPTION_ACCEPTED']            conf 0.75
+          msg_081    notify  ['PERCEPTION_ACCEPTED']            conf 0.62
+
+ group  conversation=group  sender=established_neutral
+        proposed=personal  integrity=clean          (5 rows)
+        digest 4 / notify 1     distinguishing: DIRECT_ADDRESS_GUARD, GROUP_MUTE_CAP, MODEL_PROPOSAL
+          msg_009    digest  ['GROUP_MUTE_CAP', 'PERCEPTION_ACCEPTED'] conf 0.75
+          msg_032    digest  ['PERCEPTION_ACCEPTED']            conf 0.75
+          msg_068    digest  ['PERCEPTION_ACCEPTED']            conf 0.75
+          msg_071    digest  ['PERCEPTION_ACCEPTED']            conf 0.66
+
+ group  conversation=group  sender=established_receptive
+        proposed=event  integrity=clean          (2 rows)
+        digest 1 / notify 1     distinguishing: DIRECT_ADDRESS_GUARD, DIRECT_REQUEST_FLOOR, GROUP_MUTE_CAP, MODEL_PROPOSAL
+          msg_047    digest  ['PERCEPTION_ACCEPTED']            conf 0.67
+          msg_056    notify  ['DIRECT_ADDRESS_GUARD', 'GROUP_MUTE_CAP', 'DIRECT_REQUEST_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.71
+
+ group  conversation=group  sender=established_receptive
+        proposed=personal  integrity=clean          (4 rows)
+        digest 1 / notify 3     distinguishing: DIRECT_REQUEST_FLOOR, MODEL_PROPOSAL
+          msg_002    notify  ['DIRECT_ADDRESS_GUARD', 'DIRECT_REQUEST_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.75
+          msg_033    digest  ['DIRECT_ADDRESS_GUARD', 'PERCEPTION_ACCEPTED'] conf 0.67
+          msg_055    notify  ['DIRECT_ADDRESS_GUARD', 'DIRECT_REQUEST_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.75
+          msg_057    notify  ['DIRECT_ADDRESS_GUARD', 'DIRECT_REQUEST_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.75
+
+ group  conversation=group  sender=established_receptive
+        proposed=urgent  integrity=clean          (9 rows)
+        mute 1 / notify 8     distinguishing: DIRECT_ADDRESS_GUARD, DIRECT_REQUEST_FLOOR, FREQUENTLY_FORWARDED_BROADCAST
+          msg_001    notify  ['TIME_CRITICAL_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.71
+          msg_005    notify  ['DIRECT_ADDRESS_GUARD', 'TIME_CRITICAL_FLOOR', 'DIRECT_REQUEST_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.71
+          msg_037    notify  ['TIME_CRITICAL_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.75
+          msg_042    notify  ['TIME_CRITICAL_FLOOR', 'PERCEPTION_ACCEPTED'] conf 0.75
+

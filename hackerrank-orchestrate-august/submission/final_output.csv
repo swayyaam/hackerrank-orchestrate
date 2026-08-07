@@ -1,0 +1,111 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,digest,business_update,A business is reporting on something the user already did and this user opened only some of this sender's messages.,0.71,message_0243
+msg_091,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.85,message_0238
+msg_090,digest,personal,"This is ordinary personal conversation from a sender with no history here, so it can wait.",0.58,message_0339
+msg_048,mute,scam,The message pairs a payment demand with a threatened consequence and an immediate deadline.,0.81,message_0151
+msg_040,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.71,message_0136
+msg_075,digest,business_update,A business is reporting on something the user already did and this user opened this sender's recent messages.,0.67,message_0206
+msg_005,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0065
+msg_104,mute,urgent,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.91,message_0224;message_0050
+msg_069,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.71,message_0193
+msg_107,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.74,message_0213
+msg_070,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.77,message_0369
+msg_003,digest,business_update,A business is reporting on something the user already did and this user opened this sender's recent messages.,0.67,message_0031
+msg_099,digest,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.67,message_0227
+msg_008,digest,business_update,A business is reporting on something the user already did and this user opened only some of this sender's messages.,0.75,message_0296
+msg_092,digest,payment,"The message concerns a monetary transaction from a verified business, and it can be read later.",0.58,message_0346
+msg_060,notify,urgent,The message states a deadline the user has to meet and its attachment says something different from its text.,0.75,message_0284
+msg_004,digest,business_update,A business is reporting on something the user already did and this user opened this sender's recent messages.,0.67,message_0245
+msg_030,mute,promotion,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0115;message_0335
+msg_045,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0146
+msg_052,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.92,message_0208
+msg_009,digest,personal,This is ordinary personal conversation and this user opened only some of this sender's messages.,0.75,message_0074
+msg_071,digest,personal,This is ordinary personal conversation and this user opened only some of this sender's messages.,0.66,message_0197
+msg_016,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.85,message_0024
+msg_065,digest,promotion,The message is an offer rather than an update and this user opened only some of this sender's messages.,0.75,message_0261
+msg_038,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.75,message_0131
+msg_086,notify,event,The message concerns a scheduled occurrence and the sender is using a domain the named brand does not own.,0.62,message_0222
+msg_014,mute,promotion,The user has opted out of marketing messages from this sender.,0.85,message_0017
+msg_094,digest,promotion,"The message is an offer rather than an update from a verified business, and it can be read later.",0.58,message_0356
+msg_029,digest,promotion,The message is an offer rather than an update and this user opened this sender's recent messages.,0.67,message_0095
+msg_105,mute,forward,The message advises an action that carries a plausible health or safety consequence.,0.85,message_0233
+msg_002,notify,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.75,message_0169
+msg_010,digest,business_update,A business is reporting on something the user already did and this user opened only some of this sender's messages.,0.75,message_0011
+msg_078,mute,scam,A payment instruction arrived from a sender with no established authority for payments in this conversation.,0.85,message_0211
+msg_013,mute,promotion,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0081;message_0082
+msg_018,mute,scam,The message is trying to obtain something from the user and this user dismissed this sender's recent messages.,0.71,message_0026
+msg_044,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.85,message_0143
+msg_032,digest,personal,This is ordinary personal conversation and this user opened only some of this sender's messages.,0.75,message_0119
+msg_106,notify,event,The message concerns a scheduled occurrence and this user opened this sender's recent messages.,0.71,message_0234
+msg_006,notify,payment,The message concerns a monetary transaction and this user opened this sender's recent messages.,0.71,message_0029
+msg_109,mute,scam,The message contains instructions aimed at the routing system rather than at the recipient.,0.82,message_0151
+msg_108,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.79,message_0094
+msg_019,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.91,message_0094
+msg_088,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0115;message_0232
+msg_056,notify,event,The message concerns a scheduled occurrence and this user opened this sender's recent messages.,0.71,message_0226
+msg_027,digest,promotion,The message is an offer rather than an update and the sender is using a domain the named brand does not own.,0.75,message_0272
+msg_050,digest,business_update,A business is reporting on something the user already did and this user opened this sender's recent messages.,0.67,message_0279
+msg_083,notify,personal,This is ordinary personal conversation and it continues a conversation this user already has.,0.62,message_0219
+msg_063,mute,scam,The message pairs a payment demand with a threatened consequence and an immediate deadline.,0.82,message_0182
+msg_033,digest,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.67,message_0121
+msg_061,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.71,message_0193
+msg_020,mute,scam,The message is trying to obtain something from the user and this user dismissed this sender's recent messages.,0.66,message_0114
+msg_017,mute,scam,The message pairs a payment demand with a threatened consequence and an immediate deadline.,0.73,message_0090
+msg_058,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.75,message_0241
+msg_026,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.89,message_0032
+msg_047,digest,event,The message concerns a scheduled occurrence and this user opened this sender's recent messages.,0.67,message_0001
+msg_046,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.85,message_0148
+msg_042,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.75,message_0140
+msg_079,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.77,message_0369
+msg_098,notify,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.75,message_0226
+msg_037,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.75,message_0001
+msg_007,digest,event,The message concerns a scheduled occurrence and this user opened only some of this sender's messages.,0.75,message_0070
+msg_085,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.69,message_0221
+msg_001,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0057
+msg_021,notify,payment,The message concerns a monetary transaction and this user opened this sender's recent messages.,0.75,message_0130
+msg_028,mute,promotion,The message is an offer rather than an update and the sender is using a domain the named brand does not own.,0.85,message_0034
+msg_012,mute,forward,The message is circulated content passed along unchanged and this user dismissed this sender's recent messages.,0.75,message_0194
+msg_064,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.85,message_0087
+msg_103,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0065
+msg_031,notify,urgent,The message states a deadline the user has to meet and its attachment says something different from its text.,0.71,message_0055
+msg_057,notify,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.75,message_0169
+msg_087,mute,unknown,"The message does not fit a clear category and its attachment could not be read, so it is suppressed.",0.75,message_0391;message_0389
+msg_067,notify,payment,The message concerns a monetary transaction and this user opened this sender's recent messages.,0.71,message_0068
+msg_039,notify,payment,The message concerns a monetary transaction and this user opened this sender's recent messages.,0.71,message_0364
+msg_082,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.66,message_0380
+msg_066,mute,promotion,The user has opted out of marketing messages from this sender.,0.85,message_0188
+msg_049,mute,scam,The message reads as a scam or as unsolicited bulk contact.,0.62,message_0154
+msg_015,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.77,message_0045
+msg_051,mute,promotion,The user has opted out of marketing messages from this sender.,0.85,message_0257
+msg_097,digest,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.67,message_0054
+msg_089,notify,urgent,"The message states a deadline the user has to meet from a sender with no history here, so it interrupts once.",0.54,message_0299
+msg_053,mute,business_update,This is widely circulated content that was not written for this particular user.,0.73,message_0161;message_0253
+msg_059,mute,scam,The message reads as a scam or as unsolicited bulk contact.,0.74,message_0053
+msg_024,mute,promotion,The user has opted out of marketing messages from this sender.,0.85,message_0257
+msg_072,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.77,message_0213
+msg_036,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.91,message_0283
+msg_076,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.92,message_0208
+msg_055,notify,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.75,message_0166
+msg_102,notify,personal,This is ordinary personal conversation and this user opened this sender's recent messages.,0.75,message_0371
+msg_080,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.75,message_0130
+msg_093,mute,scam,"The message is trying to obtain something from the user from a sender with no history here, and it can be suppressed.",0.54,message_0349
+msg_034,mute,greeting,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0013;message_0167
+msg_035,digest,promotion,The message is an offer rather than an update and this user opened only some of this sender's messages.,0.75,message_0281
+msg_101,digest,personal,This is ordinary personal conversation and this user opened only some of this sender's messages.,0.75,message_0370
+msg_041,digest,promotion,The message is an offer rather than an update and the sender is using a domain the named brand does not own.,0.71,message_0138
+msg_011,mute,forward,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.91,message_0077;message_0171
+msg_110,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.82,message_0238
+msg_095,mute,scam,"The message asks the user to hand over an authentication secret, which no legitimate sender requires.",0.82,message_0087
+msg_074,mute,scam,A payment instruction arrived from a sender with no established authority for payments in this conversation.,0.81,message_0204
+msg_073,mute,scam,The message is trying to obtain something from the user and this user dismissed this sender's recent messages.,0.70,message_0087
+msg_054,mute,scam,A payment instruction arrived from a sender with no established authority for payments in this conversation.,0.85,message_0389
+msg_068,digest,personal,This is ordinary personal conversation and this user opened only some of this sender's messages.,0.75,message_0191
+msg_100,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0362
+msg_062,digest,event,The message concerns a scheduled occurrence and its attachment says something different from its text.,0.67,message_0043
+msg_096,notify,personal,"This is ordinary personal conversation from a sender with no history here, so it interrupts once.",0.51,none
+msg_043,mute,urgent,This is widely circulated content that was not written for this particular user.,0.65,message_0130;message_0150
+msg_077,notify,urgent,The message states a deadline the user has to meet and this user opened this sender's recent messages.,0.71,message_0051
+msg_081,notify,event,The message concerns a scheduled occurrence and it continues a conversation this user already has.,0.62,message_0217
+msg_025,digest,business_update,A business is reporting on something the user already did and this user opened this sender's recent messages.,0.67,message_0239
+msg_084,mute,promotion,The user has opted out of marketing messages from this sender.,0.72,message_0220
+msg_022,mute,scam,A payment instruction arrived from a sender with no established authority for payments in this conversation.,0.81,message_0151

@@ -1,0 +1,60 @@
+========================================================================
+ RUN  20260801T180727Z-b2c4b90-6934c5   offline   110 rows + 30 eval
+ cfg  6934c5   prompt n/a   media n/a   model none (rules-only)
+========================================================================
+
+LABEL-FREE  (110 rows — full target set)
+------------------------------------------------------------------------
+ action        digest 66 (60.0%)  mute 44 (40.0%)
+               entropy 0.97 bits / 1.58 max  (norm 0.61)
+ type          personal 80  business_update 23  scam 7
+               entropy 1.06 / 3.46  (norm 0.31)
+
+ overrides     44 rows overridden (40.0%)   demoted 44  escalated 0  type-only 0
+               IMPERSONATION                      7
+               REPEAT_DISMISSAL                  37
+               GROUP_MUTE_CAP                    14
+               COLD_SENDER_CAP                    6
+               PERCEPTION_ACCEPTED              103
+               never fired (10): CREDENTIAL_SOLICITATION, ROUTER_DIRECTIVE, COERCIVE_PAYMENT, UNSAFE_INSTRUCTION
+                             UNAUTHORIZED_PAYMENT_REQUEST, DIRECT_ADDRESS_GUARD, PROMOTION_OPT_OUT, FREQUENTLY_FORWARDED_BROADCAST
+                             TIME_CRITICAL_FLOOR, DIRECT_REQUEST_FLOOR
+               45 rows had 2+ rules fire
+
+ evidence      106/110 cited (96.4%)   4 none   mean 1.30/row
+               tier3 48  tier2 56  tier1 2  tier0 4
+               ungrounded citations: 0   [OK]
+
+ integrity     0 warnings      perception: 0 retries, 0 parse failures   [OK]
+ confidence    0.47 – 0.95   mean 0.75   median 0.72
+               digest 0.65   mute 0.91
+               overridden 0.91  vs  accepted 0.65
+ media         0 images, 0 voice analysed of 23 media rows
+               failures: phase0_no_extraction=23
+               media_failed 23   media_unread 8
+ cache         media 0/23   perception 0/0   fully-cached rows 0
+ budget        0 in / 0 out tokens, 0.0s wall
+ reason        81–109 chars, median 85   0 outside register   [OK]
+               cites concrete evidence 33.6%   names integrity when warned n/a
+
+LABEL-DEPENDENT  (30 rows — INDICATIVE ONLY, 1 row = 3.33pp)
+------------------------------------------------------------------------
+ action        accuracy 17/30 = 56.7%      macro F1 0.46
+                        pred→   notify   digest     mute
+               truth notify       0        9        0
+                     digest       0       11        0
+                     mute         0        4        6
+ type          accuracy 7/30 = 23.3%      macro F1 0.09
+ joint         5/30 = 16.7%
+ evidence      exact 12/30  any overlap 15/30  mean jaccard 0.46
+               both-none 1   pred-none/truth-cited 0   pred-cited/truth-none 1
+ calibration   ECE 0.190   Brier 0.239     (indicative — see note)
+               [0.4,0.6]  n= 3  conf 0.50  acc 0.67  gap 0.17
+               [0.6,0.8]  n=22  conf 0.68  acc 0.45  gap 0.22
+               [0.8,1.0]  n= 5  conf 0.95  acc 1.00  gap 0.05
+ [!] n=30. A single row flip moves any rate by 3.33pp. Changes below 2 rows are not described as improvements.
+
+CONSISTENCY  (110 rows, no labels)
+------------------------------------------------------------------------
+ 13 groups, 0 with divergent actions, 0 unexplained   [OK]
+

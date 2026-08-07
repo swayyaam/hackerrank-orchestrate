@@ -1,0 +1,111 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+msg_023,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0243
+msg_091,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0238;message_0381
+msg_090,digest,personal,"This is ordinary personal conversation from a sender with no history here, so it can wait.",0.55,none
+msg_048,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0151;message_0152
+msg_040,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0136;message_0135
+msg_075,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.62,message_0206
+msg_005,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0095
+msg_104,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0115;message_0232
+msg_069,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0194;message_0193
+msg_107,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0214
+msg_070,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0369
+msg_003,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.67,message_0031
+msg_099,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0227
+msg_008,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0072
+msg_092,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.58,message_0346
+msg_060,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0176
+msg_004,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.67,message_0245
+msg_030,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0115;message_0335
+msg_045,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0146
+msg_052,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.95,message_0208
+msg_009,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0074
+msg_071,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0197
+msg_016,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0024;message_0087
+msg_065,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0261
+msg_038,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0131;message_0132
+msg_086,digest,business_update,"A business is reporting on something the user already did but its attachment could not be read, so it waits.",0.47,message_0222
+msg_014,mute,business_update,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0017;message_0084
+msg_094,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.55,none
+msg_029,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0095
+msg_105,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0233;message_0373
+msg_002,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0371
+msg_010,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0011
+msg_078,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0212;message_0211
+msg_013,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0082;message_0081
+msg_018,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0026;message_0092
+msg_044,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0036;message_0144
+msg_032,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0119
+msg_106,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0234
+msg_006,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0029
+msg_109,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0151;message_0152
+msg_108,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.95,message_0094
+msg_019,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.90,message_0094
+msg_088,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.75,message_0115;message_0232
+msg_056,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0078
+msg_027,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0272
+msg_050,digest,business_update,A business is reporting on something the user already did and it can be shown later rather than now.,0.67,message_0279
+msg_083,digest,personal,"This is ordinary personal conversation but its attachment could not be read, so it waits.",0.47,message_0219
+msg_063,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0182;message_0181
+msg_033,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0409
+msg_061,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0194;message_0193
+msg_020,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0095;message_0390
+msg_017,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0090;message_0089
+msg_058,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0078;message_0077
+msg_026,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.95,message_0032
+msg_047,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0152
+msg_046,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0148;message_0147
+msg_042,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0057
+msg_079,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0369
+msg_098,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0054
+msg_037,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0271
+msg_007,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0070
+msg_085,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.67,message_0221
+msg_001,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0057
+msg_021,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0271
+msg_028,mute,business_update,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0034;message_0112
+msg_012,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0194;message_0193
+msg_064,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0087;message_0184
+msg_103,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0065
+msg_031,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0055
+msg_057,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0169
+msg_087,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.75,message_0391;message_0389
+msg_067,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0271
+msg_039,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0364
+msg_082,digest,personal,"This is ordinary personal conversation but its attachment could not be read, so it waits.",0.47,message_0380
+msg_066,mute,business_update,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0188;message_0187
+msg_049,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.67,message_0291
+msg_015,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0214
+msg_051,mute,business_update,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0257;message_0104
+msg_097,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0054
+msg_089,digest,personal,"This is ordinary personal conversation from a sender with no history here, so it can wait.",0.55,none
+msg_053,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0161
+msg_059,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0214
+msg_024,mute,business_update,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0257;message_0104
+msg_072,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0214
+msg_036,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.95,message_0283
+msg_076,mute,scam,An unverified business account is presenting under a brand or domain it does not own.,0.95,message_0208
+msg_055,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0387
+msg_102,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0371
+msg_080,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0271
+msg_093,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.58,message_0349
+msg_034,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0013;message_0078
+msg_035,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.75,message_0281
+msg_101,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.75,message_0370
+msg_041,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.70,message_0138
+msg_011,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0078;message_0077
+msg_110,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0238;message_0381
+msg_095,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0087;message_0184
+msg_074,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.95,message_0204;message_0203
+msg_073,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0087;message_0184
+msg_054,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0391;message_0389
+msg_068,digest,personal,"This is ordinary personal conversation from a familiar sender, and it can be read later.",0.70,message_0192
+msg_100,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0228
+msg_062,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0043
+msg_096,digest,personal,"This is ordinary personal conversation from a sender with no history here, so it can wait.",0.55,none
+msg_043,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.62,message_0271
+msg_077,digest,personal,This is ordinary personal conversation and it can be shown later rather than now.,0.67,message_0051
+msg_081,digest,personal,"This is ordinary personal conversation but its attachment could not be read, so it waits.",0.47,message_0217
+msg_025,digest,business_update,"A business is reporting on something the user already did from a verified business, and it can be read later.",0.67,message_0105
+msg_084,digest,business_update,"A business is reporting on something the user already did but its attachment could not be read, so it waits.",0.47,message_0220
+msg_022,mute,personal,Comparable messages from this sender were repeatedly dismissed or muted by this user.,0.90,message_0152;message_0151

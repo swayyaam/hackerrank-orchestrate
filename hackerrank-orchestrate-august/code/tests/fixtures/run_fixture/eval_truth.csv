@@ -1,0 +1,7 @@
+message_id,action,message_type,reason,confidence,evidence_message_ids
+e01,notify,urgent,r,0.89,h1
+e02,notify,personal,r,0.8,h2
+e03,mute,scam,r,0.87,h3
+e04,mute,promotion,r,0.85,none
+e05,mute,promotion,r,0.81,h11;h12
+e06,mute,greeting,r,0.82,h20

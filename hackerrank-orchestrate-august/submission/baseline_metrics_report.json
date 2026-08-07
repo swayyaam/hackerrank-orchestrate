@@ -1,0 +1,654 @@
+{
+  "consistency": {
+    "divergent_groups": [],
+    "grouping_key": [
+      "conversation_type",
+      "sender_relationship_class",
+      "proposed_message_type",
+      "integrity_state"
+    ],
+    "groups_diverging_without_code_difference": 0,
+    "groups_total": 13,
+    "groups_with_divergence": 0,
+    "n_rows": 110
+  },
+  "generated_at_utc": "2026-08-01T18:07:50.665885Z",
+  "label_free": {
+    "action_distribution": {
+      "counts": {
+        "digest": 66,
+        "mute": 44,
+        "notify": 0
+      },
+      "entropy_bits": 0.971,
+      "entropy_normalised": 0.6126,
+      "shares": {
+        "digest": 0.6,
+        "mute": 0.4,
+        "notify": 0.0
+      }
+    },
+    "budget": {
+      "tokens": {
+        "input_mean_per_row": 0.0,
+        "input_p95": 0.0,
+        "input_total": 0,
+        "output_mean_per_row": 0.0,
+        "output_p95": 0.0,
+        "output_total": 0
+      },
+      "wall_clock_ms": {
+        "mean_per_row": 0.164,
+        "p95": 0.282,
+        "total": 18.04
+      }
+    },
+    "cache": {
+      "media_hit_rate": 0.0,
+      "media_outcomes": {
+        "corrupt": 0,
+        "hit": 0,
+        "miss": 23,
+        "n/a": 87
+      },
+      "perception_hit_rate": null,
+      "perception_outcomes": {
+        "corrupt": 0,
+        "hit": 0,
+        "miss": 0,
+        "n/a": 110
+      },
+      "rows_served_entirely_from_cache": 0
+    },
+    "confidence": {
+      "by_action": {
+        "digest": {
+          "max": 0.75,
+          "mean": 0.6494,
+          "median": 0.67,
+          "min": 0.47,
+          "p25": 0.62,
+          "p75": 0.7,
+          "std": 0.0754
+        },
+        "mute": {
+          "max": 0.95,
+          "mean": 0.9095,
+          "median": 0.9,
+          "min": 0.67,
+          "p25": 0.9,
+          "p75": 0.95,
+          "std": 0.0567
+        },
+        "notify": {
+          "max": 0.0,
+          "mean": 0.0,
+          "median": 0.0,
+          "min": 0.0,
+          "p25": 0.0,
+          "p75": 0.0,
+          "std": 0.0
+        }
+      },
+      "mean_on_not_overridden": 0.6494,
+      "mean_on_overridden": 0.9095,
+      "overall": {
+        "max": 0.95,
+        "mean": 0.7535,
+        "median": 0.725,
+        "min": 0.47,
+        "p25": 0.62,
+        "p75": 0.9,
+        "std": 0.1447
+      }
+    },
+    "evidence": {
+      "citation_count_histogram": {
+        "0": 4,
+        "1": 69,
+        "2": 37
+      },
+      "mean_citations_per_row": 1.3,
+      "rows_with_citation": 106,
+      "rows_with_none": 4,
+      "share_none": 0.0364,
+      "share_with_citation": 0.9636,
+      "tier_counts": {
+        "0": 4,
+        "1": 2,
+        "2": 56,
+        "3": 48
+      },
+      "ungrounded_citation_count": 0,
+      "ungrounded_rows": []
+    },
+    "integrity_warnings": {
+      "counts_by_type": {},
+      "rows_with_any": 0
+    },
+    "media": {
+      "failures_by_cause": {
+        "phase0_no_extraction": 23
+      },
+      "images_analysed": 0,
+      "rows_media_failed": 23,
+      "rows_media_unread": 8,
+      "rows_with_media": 23,
+      "voice_notes_transcribed": 0
+    },
+    "message_type_distribution": {
+      "counts": {
+        "business_update": 23,
+        "event": 0,
+        "forward": 0,
+        "greeting": 0,
+        "payment": 0,
+        "personal": 80,
+        "promotion": 0,
+        "scam": 7,
+        "spam": 0,
+        "unknown": 0,
+        "urgent": 0
+      },
+      "entropy_bits": 1.0591,
+      "entropy_normalised": 0.3062,
+      "shares": {
+        "business_update": 0.2091,
+        "event": 0.0,
+        "forward": 0.0,
+        "greeting": 0.0,
+        "payment": 0.0,
+        "personal": 0.7273,
+        "promotion": 0.0,
+        "scam": 0.0636,
+        "spam": 0.0,
+        "unknown": 0.0,
+        "urgent": 0.0
+      }
+    },
+    "n_rows": 110,
+    "override_codes": {
+      "applied_counts": {
+        "COERCIVE_PAYMENT": 0,
+        "COLD_SENDER_CAP": 0,
+        "CREDENTIAL_SOLICITATION": 0,
+        "DIRECT_ADDRESS_GUARD": 0,
+        "DIRECT_REQUEST_FLOOR": 0,
+        "FREQUENTLY_FORWARDED_BROADCAST": 0,
+        "GROUP_MUTE_CAP": 0,
+        "IMPERSONATION": 7,
+        "PERCEPTION_ACCEPTED": 66,
+        "PROMOTION_OPT_OUT": 0,
+        "REPEAT_DISMISSAL": 37,
+        "ROUTER_DIRECTIVE": 0,
+        "TIME_CRITICAL_FLOOR": 0,
+        "UNAUTHORIZED_PAYMENT_REQUEST": 0,
+        "UNSAFE_INSTRUCTION": 0
+      },
+      "fire_counts": {
+        "COERCIVE_PAYMENT": 0,
+        "COLD_SENDER_CAP": 6,
+        "CREDENTIAL_SOLICITATION": 0,
+        "DIRECT_ADDRESS_GUARD": 0,
+        "DIRECT_REQUEST_FLOOR": 0,
+        "FREQUENTLY_FORWARDED_BROADCAST": 0,
+        "GROUP_MUTE_CAP": 14,
+        "IMPERSONATION": 7,
+        "PERCEPTION_ACCEPTED": 103,
+        "PROMOTION_OPT_OUT": 0,
+        "REPEAT_DISMISSAL": 37,
+        "ROUTER_DIRECTIVE": 0,
+        "TIME_CRITICAL_FLOOR": 0,
+        "UNAUTHORIZED_PAYMENT_REQUEST": 0,
+        "UNSAFE_INSTRUCTION": 0
+      },
+      "never_fired": [
+        "CREDENTIAL_SOLICITATION",
+        "ROUTER_DIRECTIVE",
+        "COERCIVE_PAYMENT",
+        "UNSAFE_INSTRUCTION",
+        "UNAUTHORIZED_PAYMENT_REQUEST",
+        "DIRECT_ADDRESS_GUARD",
+        "PROMOTION_OPT_OUT",
+        "FREQUENTLY_FORWARDED_BROADCAST",
+        "TIME_CRITICAL_FLOOR",
+        "DIRECT_REQUEST_FLOOR"
+      ],
+      "rows_with_multiple_firings": 45
+    },
+    "perception_health": {
+      "hard_parse_failure_count": 0,
+      "rows_failed_total": 0,
+      "rows_with_retry": 0,
+      "schema_retry_count": 0
+    },
+    "proposal_override": {
+      "by_direction": {
+        "demoted": 44,
+        "escalated": 0,
+        "type_only": 0,
+        "unchanged": 66
+      },
+      "rows_overridden": 44,
+      "share_overridden": 0.4,
+      "transition_matrix": {
+        "digest": {
+          "digest": 66,
+          "mute": 44,
+          "notify": 0
+        },
+        "mute": {
+          "digest": 0,
+          "mute": 0,
+          "notify": 0
+        },
+        "notify": {
+          "digest": 0,
+          "mute": 0,
+          "notify": 0
+        }
+      }
+    },
+    "reason_health": {
+      "char_length": {
+        "max": 109.0,
+        "mean": 88.3727,
+        "median": 85.0,
+        "min": 81.0,
+        "p25": 81.0,
+        "p75": 88.0,
+        "std": 9.2322
+      },
+      "rows_outside_register_bounds": 0,
+      "rows_warned_without_integrity_reason": [],
+      "share_citing_concrete_evidence": 0.3364,
+      "share_referencing_integrity_when_warned": null
+    }
+  },
+  "labeled": {
+    "action": {
+      "accuracy": 0.5667,
+      "confusion_matrix": {
+        "labels": [
+          "notify",
+          "digest",
+          "mute"
+        ],
+        "matrix": [
+          [
+            0,
+            9,
+            0
+          ],
+          [
+            0,
+            11,
+            0
+          ],
+          [
+            0,
+            4,
+            6
+          ]
+        ],
+        "rows_are_truth": true
+      },
+      "correct": 17,
+      "incorrect": 13,
+      "macro_f1": 0.4595,
+      "per_class": {
+        "digest": {
+          "f1": 0.6286,
+          "precision": 0.4583,
+          "recall": 1.0,
+          "support": 11
+        },
+        "mute": {
+          "f1": 0.75,
+          "precision": 1.0,
+          "recall": 0.6,
+          "support": 10
+        },
+        "notify": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 9
+        }
+      }
+    },
+    "calibration": {
+      "brier_definition": "mean((confidence - is_action_correct)^2), one-vs-rest on the predicted action",
+      "brier_score": 0.2386,
+      "bucket_edges": [
+        0.0,
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "buckets": [
+        {
+          "accuracy": null,
+          "gap": null,
+          "lower": 0.0,
+          "mean_confidence": null,
+          "n": 0,
+          "upper": 0.2
+        },
+        {
+          "accuracy": null,
+          "gap": null,
+          "lower": 0.2,
+          "mean_confidence": null,
+          "n": 0,
+          "upper": 0.4
+        },
+        {
+          "accuracy": 0.6667,
+          "gap": 0.17,
+          "lower": 0.4,
+          "mean_confidence": 0.4967,
+          "n": 3,
+          "upper": 0.6
+        },
+        {
+          "accuracy": 0.4545,
+          "gap": 0.2241,
+          "lower": 0.6,
+          "mean_confidence": 0.6786,
+          "n": 22,
+          "upper": 0.8
+        },
+        {
+          "accuracy": 1.0,
+          "gap": 0.05,
+          "lower": 0.8,
+          "mean_confidence": 0.95,
+          "n": 5,
+          "upper": 1.0
+        }
+      ],
+      "expected_calibration_error": 0.1897,
+      "indicative_only": true
+    },
+    "evidence_overlap": {
+      "any_overlap": 15,
+      "both_none": 1,
+      "exact_set_match": 12,
+      "mean_jaccard": 0.4556,
+      "mean_precision": 0.4833,
+      "mean_recall": 0.4833,
+      "predicted_cited_truth_none": 1,
+      "predicted_none_truth_cited": 0,
+      "rows_compared": 30
+    },
+    "joint_accuracy": {
+      "accuracy": 0.1667,
+      "both_correct": 5
+    },
+    "message_type": {
+      "accuracy": 0.2333,
+      "confusion_matrix": {
+        "labels": [
+          "personal",
+          "urgent",
+          "event",
+          "payment",
+          "business_update",
+          "promotion",
+          "greeting",
+          "forward",
+          "spam",
+          "scam",
+          "unknown"
+        ],
+        "matrix": [
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            4,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ],
+        "rows_are_truth": true
+      },
+      "correct": 7,
+      "incorrect": 23,
+      "macro_f1": 0.0908,
+      "per_class": {
+        "business_update": {
+          "f1": 0.6,
+          "precision": 0.4286,
+          "recall": 1.0,
+          "support": 3
+        },
+        "event": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        "forward": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "greeting": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 2
+        },
+        "payment": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 0
+        },
+        "personal": {
+          "f1": 0.3077,
+          "precision": 0.1818,
+          "recall": 1.0,
+          "support": 4
+        },
+        "promotion": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 6
+        },
+        "scam": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        },
+        "spam": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "unknown": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 1
+        },
+        "urgent": {
+          "f1": 0.0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "support": 4
+        }
+      }
+    },
+    "n_rows": 30,
+    "noise_floor": {
+      "note": "n=30. A single row flip moves any rate by 3.33pp. Changes below 2 rows are not described as improvements.",
+      "one_row_pp": 3.33,
+      "reportable_threshold_pp": 6.66,
+      "reportable_threshold_rows": 2
+    }
+  },
+  "manifest": {
+    "config_hash": "6934c51ac421d5a1e53183bb29bb0310c7e506e24eff6d87df6e253c41be8e7a",
+    "created_at_utc": "2026-08-01T18:07:27.730320Z",
+    "dataset_fingerprint": "dd4cc690528db62be10f7877857a842a53806aa1c6802643e220de35519835b1",
+    "eval_rows_expected": 30,
+    "eval_rows_written": 30,
+    "failures": [],
+    "git_commit": "b2c4b904580c04cc3a66a82670b07838daf34a10",
+    "git_dirty": true,
+    "media_extraction_version": null,
+    "mode": "offline",
+    "model_id": "",
+    "prompt_template_version": null,
+    "rows_expected": 110,
+    "rows_written": 110,
+    "run_id": "20260801T180727Z-b2c4b90-6934c5",
+    "schema_version": 2
+  },
+  "run_id": "20260801T180727Z-b2c4b90-6934c5",
+  "schema_version": 2
+}

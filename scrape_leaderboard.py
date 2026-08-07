@@ -6,7 +6,10 @@ per-stage breakdown. Re-run this each time a new evaluation stage is released
 (output_csv, then code_zip) to capture the new scores.
 
 Usage:
-    # cookie + csrf can be passed as args or via env vars HR_COOKIE / HR_CSRF
+    # public boards need no auth at all:
+    python3 scrape_leaderboard.py --board august26-message-notification-router
+
+    # if you get a 401/403, add auth (args or env vars HR_COOKIE / HR_CSRF):
     python3 scrape_leaderboard.py --cookie "_hrank_session=...; web_browser_id=..." \
                                   --csrf "<x-csrf-token>"
 
@@ -31,6 +34,9 @@ KNOWN = {
     "may26-support-agent": dict(
         contest_id=381073, challenge_id=574790,
         url="https://www.hackerrank.com/contests/hackerrank-orchestrate-may26/challenges/support-agent/leaderboard"),
+    "august26-message-notification-router": dict(
+        contest_id=388008, challenge_id=586433,
+        url="https://www.hackerrank.com/contests/hackerrank-orchestrate-august26/challenges/message-notification-router/leaderboard"),
 }
 API = "https://www.hackerrank.com/community/hackathon/leaderboard"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
@@ -40,10 +46,16 @@ PAGE_SIZE = 30
 
 def fetch(page, cookie, csrf, contest_id, challenge_id, referer):
     url = f"{API}?contest_id={contest_id}&challenge_id={challenge_id}&page={page}"
-    req = urllib.request.Request(url, headers={
+    headers = {
         "accept": "*/*", "content-type": "application/json",
-        "accept-encoding": "gzip", "cookie": cookie, "x-csrf-token": csrf,
-        "user-agent": UA, "referer": referer})
+        "accept-encoding": "gzip", "user-agent": UA, "referer": referer}
+    # The endpoint serves public boards anonymously; auth is only needed for
+    # boards that aren't public yet (you'll get a 401/403 without it).
+    if cookie:
+        headers["cookie"] = cookie
+    if csrf:
+        headers["x-csrf-token"] = csrf
+    req = urllib.request.Request(url, headers=headers)
     with urllib.request.urlopen(req, timeout=30) as r:
         raw = r.read()
         if r.headers.get("Content-Encoding") == "gzip":
@@ -62,8 +74,6 @@ def main():
     ap.add_argument("--out", default="", help="output file (default leaderboard-<board>.json)")
     ap.add_argument("--scraped-at", default="", help="date stamp for metadata, e.g. 2026-06-26")
     a = ap.parse_args()
-    if not a.cookie or not a.csrf:
-        sys.exit("Need --cookie and --csrf (or HR_COOKIE / HR_CSRF env vars). See file header.")
 
     board = KNOWN[a.board]
     contest_id = a.contest_id or board["contest_id"]
@@ -77,7 +87,8 @@ def main():
     try:
         first = get(1)
     except urllib.error.HTTPError as e:
-        sys.exit(f"HTTP {e.code} on page 1 — cookie/csrf likely expired, re-grab them. ({e})")
+        sys.exit(f"HTTP {e.code} on page 1 — board needs auth, or the cookie/csrf "
+                 f"expired; re-grab them per the file header. ({e})")
 
     total = first["total_participants"]
     stages = first["evaluation"]["stages"]
