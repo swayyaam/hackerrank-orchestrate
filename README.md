@@ -3,18 +3,36 @@
 This repo holds my entries to **HackerRank Orchestrate**, a monthly 24-hour event where you design
 and ship an AI agent. Each month lives in its own folder with its own data, code, and a single README
 that walks through the whole thing. If you're here to learn from the code, start with whichever
-project sounds more interesting and read its README top to bottom.
+project sounds most interesting and read its README top to bottom.
 
 | Month | Project | What it does | Model | Result |
 |---|---|---|---|---|
+| **August 2026** | [WhatsApp Message Notification Router](./hackerrank-orchestrate-august/) | Decides whether an incoming message should interrupt the user now, wait in a digest, or be muted, personalised per receiver across text, image posters, and voice notes. Fills in 6 columns. | Claude Sonnet 5, plus Sarvam `saaras:v3` for voice | **37th of 1,983** |
 | **June 2026** | [Multi-Modal Damage-Claim Verification](./hackerrank-orchestrate-june/) | Looks at the photos on a damage claim and decides whether they back up the claim, contradict it, or aren't enough to tell. Fills in 14 explained columns. | Claude Opus 4.8 (vision) | 🥉 **3rd of 1,773** |
 | **May 2026** | [Support Triage Agent](./hackerrank-orchestrate-may/) | Reads support tickets for three help desks (HackerRank, Claude, Visa) and either answers them from local docs or sends them to a human. Fills in 5 columns. | Claude Haiku 4.5 | **60th of 1,349** |
 
 Each project keeps its own scraped final leaderboard:
-[`leaderboard-june.json`](./hackerrank-orchestrate-june/leaderboard-june.json) and
-[`leaderboard-may.json`](./hackerrank-orchestrate-may/leaderboard-may.json).
+[`leaderboard-august.json`](./hackerrank-orchestrate-august/leaderboard-august.json),
+[`leaderboard-june.json`](./hackerrank-orchestrate-june/leaderboard-june.json), and
+[`leaderboard-may.json`](./hackerrank-orchestrate-may/leaderboard-may.json). They're all pulled with
+[`scrape_leaderboard.py`](./scrape_leaderboard.py) at the repo root.
 
 ---
+
+## August 2026: WhatsApp Message Notification Router
+
+Same core idea as June, pushed a step further because this problem is adversarial: **the model
+describes and proposes, and plain code makes the actual decision.** The model returns a structured
+record (a proposed action, ranked type candidates, and yes/no claims about the content), and a table
+of 16 rules in fixed precedence order owns the final call. None of the four scored output values is
+written by the model. The part worth stealing is that every rule declares which inputs it reads, so a
+rule like "mute a business impersonating a brand" can be made a pure function of verification and
+domain state, with the message text simply not in scope. A scam can't talk its way past a rule that
+never reads it, and one test file proves injected text can't reach those rules while another proves
+each rule really does read what it claims.
+
+**[Read the August README](./hackerrank-orchestrate-august/README.md)** for the architecture, the
+rule table, the offline reproduction path, and an honest account of which stage cost me the most.
 
 ## June 2026: Multi-Modal Damage-Claim Verification
 
@@ -47,18 +65,23 @@ the decisions behind it, and the results.
 
 ```
 .
-├── hackerrank-orchestrate-june/   June project (code/, dataset/, README.md, leaderboard-june.json)
-├── hackerrank-orchestrate-may/    May project  (code/, data/, support_tickets/, README.md, leaderboard-may.json)
+├── hackerrank-orchestrate-august/ August project (code/, dataset/, submission/, README.md, leaderboard-august.json)
+├── hackerrank-orchestrate-june/   June project   (code/, dataset/, README.md, leaderboard-june.json)
+├── hackerrank-orchestrate-may/    May project    (code/, data/, support_tickets/, README.md, leaderboard-may.json)
+├── scrape_leaderboard.py          pulls a final leaderboard into leaderboard-<month>.json
 ├── .gitignore                     one shared ignore file for the whole repo
 └── README.md                      you are here
 ```
 
 ## Good to know
 
-- There's **one `.gitignore` at the top** covering both projects (secrets, virtual environments,
-  caches, and generated run files). Each project keeps its own `requirements.txt` and `.env.example`.
-- **Secrets stay out of git.** The `.env` files are ignored and never committed. To run either agent,
-  copy that project's `.env.example` to `.env` and paste in your own `ANTHROPIC_API_KEY`.
+- There's **one `.gitignore` at the top** covering all three projects (secrets, virtual environments,
+  caches, and generated run files). Each project declares its own dependencies: May and June use a
+  `requirements.txt`, August uses a `pyproject.toml`.
+- **Secrets stay out of git.** The `.env` files are ignored and never committed. To run the May or
+  June agent, copy that project's `.env.example` to `.env` and paste in your own
+  `ANTHROPIC_API_KEY`. August needs no key at all on its default path: it ships a cache and
+  reproduces its submitted output offline.
 - The challenge **datasets, problem statements, and rulebooks belong to HackerRank.** Each project's
   README says what's included and what isn't.
 - **License.** My code is released under the [MIT License](./LICENSE). That covers my code only, not
