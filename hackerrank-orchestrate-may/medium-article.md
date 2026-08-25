@@ -651,7 +651,7 @@ That is the real lesson across both months. The corpus changes, the problem chan
 
 The full code for this project is public and MIT licensed, the May project under:
 
-**[github.com/swayam-mishra/hackerrank-orchestrate](https://github.com/swayam-mishra/hackerrank-orchestrate)** (see `hackerrank-orchestrate-may/`)
+**[github.com/swayyaam/hackerrank-orchestrate](https://github.com/swayyaam/hackerrank-orchestrate)** (see `hackerrank-orchestrate-may/`)
 
 If it is useful to you, a star helps the next person find it. And if you are building something similar or just want to compare notes on RAG, I am happy to talk.
 

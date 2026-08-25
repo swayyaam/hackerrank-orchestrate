@@ -154,7 +154,7 @@ If you mostly use LLMs and want to build real systems with them, a path that wor
 
 The full project is public and MIT licensed on GitHub, so it is there to read, run, fork, and borrow from:
 
-**[github.com/swayam-mishra/hackerrank-orchestrate](https://github.com/swayam-mishra/hackerrank-orchestrate)**
+**[github.com/swayyaam/hackerrank-orchestrate](https://github.com/swayyaam/hackerrank-orchestrate)**
 
 If it helps you, a star is genuinely appreciated, and it helps the next person find it too.
 
