@@ -1,7 +1,7 @@
 # ============================================================================
 # Single .gitignore for the whole monorepo (covers every project subdirectory).
 # Patterns without a leading slash match at any depth, so they apply inside
-# hackerrank-orchestrate-may/, -june/ and -august/ alike.
+# hackerrank-orchestrate-may/, -june/, -august/ and -september/ alike.
 # ============================================================================
 
 # --- Secrets (never commit; keep the .example templates) ---
@@ -31,6 +31,7 @@ ENV/
 .coverage
 htmlcov/
 .cache/
+.hypothesis/
 
 # --- OS / editor cruft ---
 .DS_Store
@@ -63,3 +64,10 @@ hackerrank-orchestrate-june/code/artifacts/
 # (dataset/output.csv and submission/ are kept deliverables, so NOT ignored.)
 # The generated cache is code/.cache/, already covered by the .cache/ rule above.
 # Do NOT ignore code/cache/ — that is the cache *module's* source.
+
+# --- September project: local-only working files ---
+# (output.csv at the project root is the kept deliverable, so NOT ignored.)
+# scratch/ holds throwaway analysis scripts and a bundled venv; never imported.
+hackerrank-orchestrate-september/scratch/
+# Stray image unrelated to the project.
+hackerrank-orchestrate-september/code/docs/KIIT-logo-HD.png

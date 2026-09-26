@@ -37,6 +37,9 @@ KNOWN = {
     "august26-message-notification-router": dict(
         contest_id=388008, challenge_id=586433,
         url="https://www.hackerrank.com/contests/hackerrank-orchestrate-august26/challenges/message-notification-router/leaderboard"),
+    "september26-buy-or-wait": dict(
+        contest_id=392281, challenge_id=597126,
+        url="https://www.hackerrank.com/contests/hackerrank-orchestrate-september26/challenges/buy-or-wait/leaderboard"),
 }
 API = "https://www.hackerrank.com/community/hackathon/leaderboard"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "

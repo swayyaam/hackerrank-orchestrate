@@ -1,0 +1,348 @@
+{
+ "arm": "current",
+ "reasoning_effort_sent": null,
+ "messages": 45,
+ "schema_valid": 43,
+ "schema_valid_rate": 0.9556,
+ "failures": {
+  "empty content": 2
+ },
+ "deltas_produced": 17,
+ "deltas_with_resolvable_target": 11,
+ "deltas_claiming_new_fact": 15,
+ "effects": {
+  "confirm": 2,
+  "amend": 10,
+  "none": 4,
+  "clarify": 1
+ },
+ "prompt_tokens": 38818,
+ "completion_tokens": 285761,
+ "completion_tokens_mean": 6350.2,
+ "completion_tokens_max": 16384,
+ "finish_reasons": {
+  "stop": 43,
+  "length": 2
+ },
+ "wall_seconds": 1573.8,
+ "per_message": [
+  {
+   "message_id": "message_01",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 9334,
+   "failure": null
+  },
+  {
+   "message_id": "message_02",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 7848,
+   "failure": null
+  },
+  {
+   "message_id": "message_03",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 4697,
+   "failure": null
+  },
+  {
+   "message_id": "message_08",
+   "valid": false,
+   "deltas": null,
+   "completion_tokens": 16384,
+   "failure": "empty content"
+  },
+  {
+   "message_id": "message_18",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 12044,
+   "failure": null
+  },
+  {
+   "message_id": "message_27",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3429,
+   "failure": null
+  },
+  {
+   "message_id": "message_31",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 10658,
+   "failure": null
+  },
+  {
+   "message_id": "message_33",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 8497,
+   "failure": null
+  },
+  {
+   "message_id": "message_34",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3226,
+   "failure": null
+  },
+  {
+   "message_id": "message_36",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 13701,
+   "failure": null
+  },
+  {
+   "message_id": "message_42",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 11722,
+   "failure": null
+  },
+  {
+   "message_id": "message_53",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 10067,
+   "failure": null
+  },
+  {
+   "message_id": "message_65",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 7281,
+   "failure": null
+  },
+  {
+   "message_id": "message_84",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3594,
+   "failure": null
+  },
+  {
+   "message_id": "message_92",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3997,
+   "failure": null
+  },
+  {
+   "message_id": "message_93",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3328,
+   "failure": null
+  },
+  {
+   "message_id": "message_94",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1810,
+   "failure": null
+  },
+  {
+   "message_id": "message_103",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 3615,
+   "failure": null
+  },
+  {
+   "message_id": "message_116",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 12413,
+   "failure": null
+  },
+  {
+   "message_id": "message_122",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 7359,
+   "failure": null
+  },
+  {
+   "message_id": "message_125",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 8382,
+   "failure": null
+  },
+  {
+   "message_id": "message_126",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 6910,
+   "failure": null
+  },
+  {
+   "message_id": "message_127",
+   "valid": false,
+   "deltas": null,
+   "completion_tokens": 16384,
+   "failure": "empty content"
+  },
+  {
+   "message_id": "message_128",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 4187,
+   "failure": null
+  },
+  {
+   "message_id": "message_134",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1014,
+   "failure": null
+  },
+  {
+   "message_id": "message_142",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1999,
+   "failure": null
+  },
+  {
+   "message_id": "message_145",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1894,
+   "failure": null
+  },
+  {
+   "message_id": "message_156",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 6106,
+   "failure": null
+  },
+  {
+   "message_id": "message_158",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1522,
+   "failure": null
+  },
+  {
+   "message_id": "message_159",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 2356,
+   "failure": null
+  },
+  {
+   "message_id": "message_160",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1613,
+   "failure": null
+  },
+  {
+   "message_id": "message_163",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 4293,
+   "failure": null
+  },
+  {
+   "message_id": "message_165",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 8415,
+   "failure": null
+  },
+  {
+   "message_id": "message_174",
+   "valid": true,
+   "deltas": 2,
+   "completion_tokens": 12505,
+   "failure": null
+  },
+  {
+   "message_id": "message_175",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 10039,
+   "failure": null
+  },
+  {
+   "message_id": "message_178",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 4006,
+   "failure": null
+  },
+  {
+   "message_id": "message_182",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 10113,
+   "failure": null
+  },
+  {
+   "message_id": "message_185",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 4299,
+   "failure": null
+  },
+  {
+   "message_id": "message_186",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1169,
+   "failure": null
+  },
+  {
+   "message_id": "message_189",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1402,
+   "failure": null
+  },
+  {
+   "message_id": "message_197",
+   "valid": true,
+   "deltas": 1,
+   "completion_tokens": 8313,
+   "failure": null
+  },
+  {
+   "message_id": "message_203",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 7664,
+   "failure": null
+  },
+  {
+   "message_id": "message_212",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 1153,
+   "failure": null
+  },
+  {
+   "message_id": "message_213",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 2870,
+   "failure": null
+  },
+  {
+   "message_id": "message_215",
+   "valid": true,
+   "deltas": 0,
+   "completion_tokens": 2149,
+   "failure": null
+  }
+ ],
+ "measured_at": "2026-09-12T22:34:08.478062+00:00",
+ "model": "sarvam-105b",
+ "seed": 1002
+}

@@ -1,0 +1,344 @@
+{
+  "trials": 5,
+  "unstable": [
+    "image_14"
+  ],
+  "images": {
+    "image_01": {
+      "values": [
+        "4365000",
+        "4365000",
+        "4365000",
+        "4365000",
+        "4365000"
+      ],
+      "agree": true,
+      "modal_value": "4.365E+6",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_02": {
+      "values": [
+        "100000.00",
+        "100000.00",
+        "100000.00",
+        "100000.00",
+        "100000.00"
+      ],
+      "agree": true,
+      "modal_value": "1E+5",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_03": {
+      "values": [
+        "41272.0",
+        "41272.0",
+        "41272.0",
+        "41272.0",
+        "41272.0"
+      ],
+      "agree": true,
+      "modal_value": "41272",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_04": {
+      "values": [
+        "2854.00",
+        "2854.00",
+        "2854.00",
+        "2854.00",
+        "2854.00"
+      ],
+      "agree": true,
+      "modal_value": "2854",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_05": {
+      "values": [
+        "704.05",
+        "704.05",
+        "704.05",
+        "704.05",
+        "704.05"
+      ],
+      "agree": true,
+      "modal_value": "704.05",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_06": {
+      "values": [
+        "1995.00",
+        "1995.00",
+        "1995.00",
+        "1995.00",
+        "1995.00"
+      ],
+      "agree": true,
+      "modal_value": "1995",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "any_read_reconciled": false
+    },
+    "image_07": {
+      "values": [
+        "8528",
+        "8528",
+        "8528",
+        "8528",
+        "8528"
+      ],
+      "agree": true,
+      "modal_value": "8528",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_08": {
+      "values": [
+        "15339.00",
+        "15339.00",
+        "15339.00",
+        "15339.00",
+        "15339.00"
+      ],
+      "agree": true,
+      "modal_value": "15339",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_09": {
+      "values": [
+        "723.00",
+        "723.00",
+        "723.00",
+        "723.00",
+        "723.00"
+      ],
+      "agree": true,
+      "modal_value": "723",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_10": {
+      "values": [
+        "79679.26",
+        "79679.26",
+        "79679.26",
+        "79679.26",
+        "79679.26"
+      ],
+      "agree": true,
+      "modal_value": "79679.26",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_11": {
+      "values": [
+        "3650.00",
+        "3650.00",
+        "3650.00",
+        "3650.00",
+        "3650.00"
+      ],
+      "agree": true,
+      "modal_value": "3.65E+3",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_12": {
+      "values": [
+        "33.50",
+        "33.50",
+        "33.50",
+        "33.50",
+        "33.50"
+      ],
+      "agree": true,
+      "modal_value": "33.5",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_13": {
+      "values": [
+        "2298",
+        "2298",
+        "2298",
+        "2298",
+        "2298"
+      ],
+      "agree": true,
+      "modal_value": "2298",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_14": {
+      "values": [
+        "4543",
+        "670.00",
+        "4543.00",
+        "4543",
+        "670"
+      ],
+      "agree": false,
+      "modal_value": "4543",
+      "modal_count": 3,
+      "distinct": 2,
+      "reconciled_per_read": [
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "any_read_reconciled": false
+    },
+    "image_15": {
+      "values": [
+        "9968.00",
+        "9968.00",
+        "9968.00",
+        "9968.00",
+        "9968.00"
+      ],
+      "agree": true,
+      "modal_value": "9968",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    },
+    "image_16": {
+      "values": [
+        "393.22",
+        "393.22",
+        "393.22",
+        "393.22",
+        "393.22"
+      ],
+      "agree": true,
+      "modal_value": "393.22",
+      "modal_count": 5,
+      "distinct": 1,
+      "reconciled_per_read": [
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "any_read_reconciled": true
+    }
+  }
+}

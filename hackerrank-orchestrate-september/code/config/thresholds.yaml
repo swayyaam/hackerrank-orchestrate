@@ -1,0 +1,153 @@
+# Buy or Wait? — numeric thresholds.
+#
+# Every band, tolerance, minimum and multiple the recurrence and forecast layers
+# use lives here. No numeric literal for any of them appears in source.
+#
+# These values are chosen from first principles, NOT fitted to the holdout
+# result. Each carries the reasoning that set it, so a later change is a
+# deliberate argument rather than a nudge until a number looked good.
+
+version: 1
+
+recurrence:
+  # A calendar month is 28-31 days. One day of slack either side absorbs a
+  # payment shifted off a weekend or a public holiday.
+  monthly_gap_min_days: 26
+  monthly_gap_max_days: 32
+
+  # How far the day-of-month may wander before a series stops being anchored.
+  # A weekend or holiday shift moves a payment by at most a couple of days; more
+  # than that and the series is running on an interval, not on a date.
+  day_of_month_tolerance_days: 2
+
+  # How far a fixed-interval gap may vary and still count as the same interval.
+  fixed_interval_tolerance_days: 2
+
+  # Q18_min_occurrences_for_cadence. Two occurrences is one gap, the weakest
+  # claim that is still a pattern. Kept in sync with the decision register; the
+  # settings loader raises if the two disagree.
+  min_occurrences: 2
+
+  # Q19_series_staleness. One missed period is overdue; beyond one and a half
+  # the series has ended. Expressed as a multiple of the detected period so a
+  # weekly series goes stale far sooner than a monthly one.
+  staleness_period_multiple: "1.5"
+
+  # Warn when the amount chosen by Q20 diverges from the series median by more
+  # than this fraction. A quarter is large enough to ignore ordinary variation
+  # and small enough to catch a price change or a one-off spike.
+  amount_median_divergence_fraction: "0.25"
+
+  # No real cadence in a personal-finance ledger is longer than this. A gap
+  # beyond it is a coincidence between two unrelated events, not a period.
+  max_period_days: 400
+
+  # Q22_series_continuation. How close the first occurrence of a replacement
+  # income series must sit to the last occurrence of the stale one before the
+  # two are treated as one continuing income stream. Expressed as a multiple of
+  # the stale series' detected period, so a monthly salary tolerates a wider
+  # employment gap than a weekly one.
+  continuation_period_multiple: "2.0"
+
+spending_changes:
+  # The specification caps spending_changes_needed at three entries. A plan
+  # needing a fourth is REJECTED, never truncated to three: a truncated set does
+  # not make the plan safe, so emitting it would claim a safety that does not
+  # hold.
+  max_changes: 3
+
+perception:
+  # How much of an untrusted quote is carried into the evidence ledger. Long
+  # enough to show what the message actually said, short enough that a message
+  # cannot use the ledger as a channel for arbitrary text.
+  max_evidence_quote_chars: 120
+
+vision:
+  # Label priority, most authoritative first. A GENERAL ordered list of the
+  # words documents use for "the figure that was actually owed or paid". No
+  # vendor, no layout position, no image id — those would memorise one dataset.
+  #
+  # The ordering encodes one idea: a figure that names a remaining obligation
+  # beats one that names a computed total, which beats one that names a
+  # subtotal, which beats summing the lines yourself.
+  label_priority:
+    - balance due
+    - amount due
+    - net pay
+    - amount payable
+    - grand total
+    - total paid
+    - total amount received
+    - total incl taxes
+    - total
+    - net amount
+    - item bill
+    - subtotal
+    - line_item_sum
+
+  # Labels that look authoritative but are not: a tendered figure is not the
+  # cost, and a paid-to-date figure on an unpaid bill is zero.
+  label_denylist:
+    - cash paid
+    - amount paid
+    - change
+    - previous balance
+    - payments
+
+  # An arithmetic check closes when the candidate equals the sum of its visible
+  # components to within this absolute tolerance, which absorbs the rounding a
+  # printed document does.
+  reconciliation_tolerance: "1.00"
+
+  # --- best-of-N, FIXED BEFORE THE STABILITY MEASUREMENT WAS RUN --------------
+  #
+  # LIMITATIONS.md L9 records one document whose transcription varies between
+  # calls. These two values decide what to do about it, and they are written
+  # here BEFORE the 16x5 stability probe was run, so the rule cannot be chosen
+  # after seeing which answer it happens to pick. That ordering is the whole
+  # point; a majority vote tuned against a known gold answer is just the gold
+  # answer with extra steps.
+  #
+  # reads_per_amount: how many independent reads of one document are taken.
+  #   1 keeps the current single-read behaviour and is what ships unless the
+  #   probe shows instability on MORE THAN ONE image. One unstable document out
+  #   of sixteen is a provider limitation, and paying 3x on every image to
+  #   paper over it would be buying nothing on the other fifteen.
+  #
+  # read_disagreement_rule: how N reads collapse to one answer.
+  #   "majority_then_reconciled" — the value returned by strictly more than half
+  #   the reads wins. With no majority, the tie goes to a read whose figure
+  #   reconciles arithmetically against the document's own line items or its
+  #   amount-in-words block. If no read reconciles, the amount is UNRESOLVED and
+  #   flagged, never guessed. Note what this means for a genuine 50/50 split: a
+  #   majority of three cannot break it, so the tie rule is what carries the
+  #   weight, and fail-closed is the honest outcome when it cannot.
+  reads_per_amount: 1
+  read_disagreement_rule: majority_then_reconciled
+
+forecast:
+  # Fixed by the problem statement's 90-day safety check.
+  horizon_days: 90
+
+  # Variable-spending projection. The rate has NO free coefficient: it is the
+  # total spend inside the trailing window divided by the window length, and
+  # the window is the horizon itself. The claim is "the next 90 days look like
+  # the last 90 days", which is arguable on its merits and has nothing to fit.
+  variable_spend_window_days: 90
+
+  # Warning only. A projected variable spend above this fraction of the opening
+  # balance means the rate estimate is dominating the forecast and should be
+  # read before the answer is trusted.
+  variable_spend_warn_fraction_of_opening: "0.5"
+
+  # A GUARD ON THE EVIDENCE, not a damping coefficient. A trailing window
+  # holding fewer occurrences than this does not produce a rate at all; the
+  # series is simply not projected.
+  #
+  # Reasoning, the same as Q18's: two occurrences is one interval, the weakest
+  # observation that is still an observation. A rate computed from a single
+  # purchase extrapolates one point across ninety days, and the size of that
+  # extrapolation is bounded by nothing — it can exceed the user's whole
+  # balance. That is a rule without a lower bound rather than an unlucky tail,
+  # and an unbounded rule will do more damage on unseen rows than on seen ones.
+  min_occurrences_in_trailing_window: 2

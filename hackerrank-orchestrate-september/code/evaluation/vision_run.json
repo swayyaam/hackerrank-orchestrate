@@ -1,0 +1,146 @@
+{
+  "image_01": {
+    "got": "4365000",
+    "want": "4365000",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "sample",
+    "naive_match": false,
+    "detail": "selected on label 'Net Pay'; no component check closed; second read agrees"
+  },
+  "image_02": {
+    "got": "100000.00",
+    "want": "100000",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "sample",
+    "naive_match": false,
+    "detail": "selected on label 'Balance Due'; no component check closed; second read agrees"
+  },
+  "image_03": {
+    "got": "41272.0",
+    "want": "41272.00",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "sample",
+    "naive_match": false,
+    "detail": "selected on label 'Net Amount'; no component check closed; second read agrees"
+  },
+  "image_04": {
+    "got": "2854.00",
+    "want": "2854.00",
+    "ok": true,
+    "path": "digitise",
+    "set": "sample",
+    "naive_match": false,
+    "detail": "selected on label 'Item Bill'; line items sum to the chosen figure"
+  },
+  "image_05": {
+    "got": "704.05",
+    "want": "704.05",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "sample",
+    "naive_match": false,
+    "detail": "selected on label 'Total (\u20b9)'; no component check closed; second read agrees"
+  },
+  "image_06": {
+    "got": "1995.00",
+    "want": "1995.00",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total'; no component check closed; second read used"
+  },
+  "image_07": {
+    "got": "8528",
+    "want": "8528",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Grand Total (RS)'; no component check closed; second read agrees"
+  },
+  "image_08": {
+    "got": "15339.00",
+    "want": "15339.00",
+    "ok": true,
+    "path": "digitise",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total Amount Received'; amount in words names the chosen figure"
+  },
+  "image_09": {
+    "got": "723.00",
+    "want": "723.00",
+    "ok": true,
+    "path": "digitise",
+    "set": "eval",
+    "naive_match": true,
+    "detail": "selected on label 'Total Amount Received'; amount in words names the chosen figure"
+  },
+  "image_10": {
+    "got": "79679.26",
+    "want": "79679.26",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Balance Due'; no component check closed; second read agrees"
+  },
+  "image_11": {
+    "got": "3650.00",
+    "want": "3650.00",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Amount Payable'; no component check closed; second read agrees"
+  },
+  "image_12": {
+    "got": "33.50",
+    "want": "33.50",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total: $'; no component check closed; second read agrees"
+  },
+  "image_13": {
+    "got": "2298",
+    "want": "2298",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total paid \u20b9'; no component check closed; second read agrees"
+  },
+  "image_14": {
+    "got": "4543",
+    "want": "4543.00",
+    "ok": true,
+    "path": "digitise",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'ices Charged Include all Taxes E &amp; O.E Signature TOTAL 4543'; no component check closed; line items sum to 4543, which the document prints; substituted for the figure at 'ices Charged Include all Taxes E &amp; O.E Signature TOTAL 4543'"
+  },
+  "image_15": {
+    "got": "9968.00",
+    "want": "9968.00",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total(Incl Taxes)'; no component check closed; second read agrees"
+  },
+  "image_16": {
+    "got": "393.22",
+    "want": "393.22",
+    "ok": true,
+    "path": "digitise_then_extract",
+    "set": "eval",
+    "naive_match": false,
+    "detail": "selected on label 'Total'; no component check closed; second read agrees"
+  }
+}

@@ -1,0 +1,607 @@
+# Buy or Wait? — decision register.
+#
+# Every place the specification is ambiguous against observed data becomes a
+# named, defaulted flag here. None of these is a silent choice buried in code.
+#
+# Q1-Q13 are the open questions raised in docs/DATA_REPORT.md section 10; each
+# default is that report's "best reading". Q14-Q15 were added with the
+# architecture.
+#
+# Questions are phrased as GENERAL RULES, never as facts about particular rows.
+# No dataset identifier appears in this file.
+#
+# `sample_discriminates` records whether sample_requests.csv can tell the
+# default apart from the alternative. Where it is false, the flag is a genuine
+# scoring risk and flipping it is a real experiment for evaluation/ablations.py.
+#
+# `read_at` names the module(s) that actually contain the behaviour, verified by
+# tests/test_decision_register.py rather than by assertion.
+#
+# `switchable` says whether the flag is read at runtime. true means the pipeline
+# consults it and the alternative is one config edit away. false means the
+# default is the implemented behaviour and the entry is a record of the choice,
+# not a switch; flipping it changes nothing until code is written. Both kinds
+# belong here, but conflating them is how a register comes to describe a system
+# that does not exist.
+#
+# `contract` quotes the line in AGENTS.md that settles the question, verbatim,
+# or is empty where the contract is silent and the default is still our reading.
+# That distinction is the point of the field: a confirmed default carries no
+# scoring risk, an unconfirmed one does, and only this register can tell them
+# apart. Where AGENTS.md and problem_statement.md differ, AGENTS.md 0 and 1 say
+# problem_statement.md governs task semantics; any such case is called out in
+# the entry itself rather than resolved silently.
+
+version: 1
+
+decisions:
+
+  - id: Q1_pending_duplicate_debit
+    question: >
+      A pending debit that duplicates an already-settled debit: reserve it as a
+      pending obligation, or discard it as a duplicate record?
+    default: reserve
+    alternative: ignore_as_duplicate
+    sample_discriminates: false
+    rationale: >
+      The spec says both "reserve pending debits" and "ignore duplicate
+      records". Conflict-resolution rule 4 prefers the financially safer
+      interpretation, and no reversal record exists.
+    read_at: bow/pipeline.py (flag), bow/data/normalize.py (applied)
+    switchable: true
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.3: "Reserve pending debits."
+      Stated without qualification, so the duplicate reading is no longer
+      available for a pending debit. Note that 6.3 does not repeat
+      problem_statement.md's "ignore duplicate records", so the tension
+      that produced this flag is now one-sided.
+
+  - id: Q2_installment_cap_basis
+    question: >
+      Is max_installment_months compared against the payment count, or against
+      the elapsed months the schedule spans?
+    default: payment_count
+    alternative: elapsed_month_span
+    sample_discriminates: false
+    rationale: >
+      The simpler mapping, and it is the stricter of the two for every option
+      on which the readings disagree.
+    read_at: bow/engine/plans.py
+    switchable: false
+    contract:
+
+  - id: Q3_deferred_full_payment_status
+    question: >
+      When a single deferred full payment completes the request by its
+      deadline, is the status affordable_later or affordable_with_plan?
+    default: affordable_later
+    alternative: affordable_with_plan
+    sample_discriminates: true
+    rationale: >
+      affordable_with_plan is reserved for the three mechanisms the spec names:
+      partial-payment schedule, installments, permitted spending changes.
+    read_at: bow/engine/policy.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.2: "affordable_with_plan means
+      the full request is completed through a partial-payment schedule,
+      installments, or permitted spending changes." Three named
+      mechanisms; a single deferred full payment is none of them, so the
+      status is affordable_later.
+
+  - id: Q4_wait_ineligible_fallback
+    question: >
+      When full payment becomes safe later but the user does not accept
+      full_payment, what is emitted, and is earliest_date_for_full_payment
+      still reported?
+    default: not_recommended_with_earliest_date
+    alternative: not_recommended_with_empty_earliest_date
+    sample_discriminates: false
+    rationale: >
+      The spec says earliest_date_for_full_payment measures capacity
+      independently of the user's payment-method preferences.
+    read_at: bow/engine/policy.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.2:
+      "earliest_date_for_full_payment is the first conservative projected
+      date for one safe full payment. It equals request_date for
+      affordable_now and is empty when no full payment is safe within the
+      forecast period." Emptiness is tied to capacity alone, so the date
+      is still reported when the user declines the method.
+
+  - id: Q5_rounded_vs_exact_total
+    question: >
+      When a document prints both an exact tax-inclusive total and a rounded
+      final total, which is the extracted amount?
+    default: rounded_final_total
+    alternative: exact_total
+    sample_discriminates: false
+    rationale: >
+      The rounded figure is the amount actually tendered and settled; the exact
+      figure is an intermediate.
+    read_at: config/thresholds.yaml (label_priority), bow/perception/parsing.py
+    switchable: false
+    contract:
+
+  - id: Q6_due_date_tier_selection
+    question: >
+      When a bill prints one amount due on or before a cut-off date and a
+      higher amount after it, which tier applies?
+    default: by_event_date
+    alternative: by_settlement_date
+    sample_discriminates: false
+    rationale: >
+      The event's own event_date is the obligation date; the settlement date
+      records when cash moves, not which tariff was billed.
+    read_at: config/thresholds.yaml (label_priority), bow/perception/parsing.py
+    switchable: false
+    contract:
+
+  - id: Q7_message_sourced_future_income
+    question: >
+      May a message be the sole source of future income that has no event row?
+    default: require_event_row
+    alternative: allow_when_corroborated_by_recurrence
+    sample_discriminates: false
+    rationale: >
+      The spec permits messages to confirm financial information but forbids
+      inventing unsupported income. The original default allowed a message to
+      introduce income when settled recurrence corroborated it. That route was
+      never built, and it should not be: corroboration by recurrence means the
+      recurrence is the source and the message is redundant, so the permissive
+      case adds risk without adding information. The guard in
+      bow/perception/untrusted.py drops every delta that names no target event
+      row, which is require_event_row.
+    read_at: bow/perception/untrusted.py
+    switchable: false
+    contract: >
+      DEFAULT FLIPPED TO MATCH THE CODE AND THE CONTRACT. AGENTS.md 6.3:
+      "Do not invent unsupported future income, expenses, payment options,
+      or other financial facts." The corroboration route was never
+      implemented: bow/perception/untrusted.py drops any delta that names
+      no target event row, and has done since it was written. The register
+      was describing an intention, not the behaviour. Nothing changes in
+      the output; the flag now says what the code does.
+
+  - id: Q8_balance_as_of_semantics
+    question: >
+      Does current_available_balance already include every event settling on or
+      before request_date?
+    default: inclusive_through_request_date
+    alternative: as_of_last_settled_event
+    sample_discriminates: false
+    rationale: >
+      The balance is not reconstructible from the ledger, so it is a given
+      starting point rather than a running total.
+    read_at: bow/pipeline.py (flag), bow/engine/forecast.py
+    switchable: true
+    contract:
+
+  - id: Q9_pending_credit_in_horizon
+    question: >
+      Is a pending credit ever counted once its stated settlement date falls
+      inside the forecast horizon?
+    default: never_count
+    alternative: count_from_settlement_date
+    sample_discriminates: false
+    rationale: >
+      The spec's instruction to ignore pending credits carries no time
+      qualifier, and the safer reading is to exclude them throughout.
+    read_at: bow/data/normalize.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.3: "Do not count pending credits,
+      bonuses, commissions, refunds, lottery proceeds, or investment gains
+      until they settle." READ THE CONDITION CAREFULLY: "until they
+      settle" is a change of status in the data, not a date passing. A
+      pending credit carrying a future settlement date has still not
+      settled, and 6.1's "treat settled, pending, scheduled, and
+      unrealized according to their cash state" says the same thing from
+      the other side. never_count stands.
+
+  - id: Q10_amount_safe_basis
+    question: >
+      Is amount_safe_to_pay computed as a standalone one-off payment today, or
+      as the first leg of the recommended plan?
+    default: standalone_today
+    alternative: first_leg_of_plan
+    sample_discriminates: false
+    rationale: >
+      The spec defines it before optional spending changes and independently of
+      the recommendation, so it cannot be plan-dependent.
+    read_at: bow/engine/capacity.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.2: "amount_safe_to_pay is the
+      amount safe on request_date before optional spending changes and is
+      between 0 and requested_amount inclusive." Defined on the request
+      date and before changes, therefore independent of whichever plan is
+      recommended.
+
+  - id: Q11_spending_change_target_occurrence
+    question: >
+      Which occurrence of a recurring flexible series does a spending change
+      reference?
+    default: latest_past_occurrence
+    alternative: first_projected_future_occurrence
+    sample_discriminates: true
+    rationale: >
+      A projected future occurrence has no event_id, so it cannot be expressed
+      in the required stop:<event_id> syntax.
+    read_at: bow/engine/changes.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.2: "spending_changes_needed is
+      none or up to three stop:<event_id> and
+      reduce_to:<event_id>:<new_amount> actions." The syntax is over event
+      ids, and a projected future occurrence has none. The same clause
+      continues "Only non-protected, flexible events in a category the
+      user permits may be changed", which is STRICTER than
+      problem_statement.md's "only recurring expenses marked as flexible";
+      that stricter rule is now enforced in bow/engine/changes.py rather
+      than merely asserted as a warning count.
+
+  - id: Q12_invoice_total_vs_tendered
+    question: >
+      When a document shows both an invoice total and a larger amount tendered
+      with change returned, which is the expense?
+    default: invoice_total
+    alternative: amount_tendered
+    sample_discriminates: false
+    rationale: >
+      The expense is what the transaction cost, not what was handed over before
+      change.
+    read_at: config/thresholds.yaml (label_denylist), bow/perception/parsing.py
+    switchable: false
+    contract:
+
+  - id: Q13_uncorroborated_windfall_and_fee
+    question: >
+      When a message implies both an incoming windfall and an outgoing release
+      or processing fee, and no event row supports either, is anything modelled?
+    default: model_neither
+    alternative: model_fee_as_obligation
+    sample_discriminates: false
+    rationale: >
+      Modelling either would create a financial fact from untrusted content
+      that no event row supports.
+    read_at: bow/perception/untrusted.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.3: "Do not invent unsupported
+      future income, expenses, payment options, or other financial facts."
+      Modelling either half of the pair would do exactly that.
+
+  - id: Q14_vision_escalation
+    question: >
+      What triggers the second, schema-constrained document read, and what is
+      it? (It is a second job on the SAME model, not a different model: the
+      out-of-set vision model is configured for capability probing only and the
+      runtime path never calls it.)
+    default: on_reconciliation_or_partial_or_arithmetic_failure
+    alternative: on_low_reported_confidence
+    sample_discriminates: false
+    rationale: >
+      Reconciliation failure, a partially_completed job, and a non-closing
+      arithmetic check are observable and deterministic; a self-reported
+      confidence score is neither calibrated nor verifiable.
+    read_at: bow/perception/vision.py
+    switchable: false
+    contract:
+
+  - id: Q15_message_language_routing
+    question: >
+      What decides in-set versus out-of-set routing for message extraction?
+    default: route_on_binary_in_set_verdict
+    alternative: route_on_returned_language_code
+    sample_discriminates: false
+    rationale: >
+      CHANGED ON MEASUREMENT (scripts/probe_multilingual.py,
+      docs/MULTILINGUAL_PROBE.md). Detection separated 45 non-English messages
+      from 170 English ones with no false positives — the binary verdict was
+      right 45 times out of 45. The specific code it returned was wrong 5
+      times, naming an IN-SET language for text that was not in that language.
+      Routing on the returned code would therefore send those 5 to the in-set
+      model on a false premise. Routing on the binary verdict alone is correct
+      on every message measured, so that is now the default and the returned
+      code is treated as unreliable detail.
+      WHY THE ROLES SURVIVE: the in-set model reached 97.8% schema validation
+      (44 of 45) once the completion budget stopped truncating it, and every
+      single failure at every budget was an empty truncated response rather
+      than a language failure. That is close enough to make the out-of-set
+      route look unnecessary, but it is not 100%, so lang_detect,
+      message_extract_oos and the routing rule stay until one message run
+      completes cleanly. The last survivor, at 16384 tokens, returned content
+      when re-run, so the residual failure is a borderline truncation rather
+      than a systematic one.
+    read_at: bow/perception/routing.py
+    switchable: false
+    contract:
+
+  - id: Q16_cash_date_basis
+    question: >
+      Which date determines when an event hits the balance, and therefore which
+      date the FX lookup keys on?
+    default: settlement_date
+    alternative: event_date
+    sample_discriminates: false
+    rationale: >
+      Cash moves on the settlement date; the event date records when the
+      obligation arose. COUPLING: this flag also selects the date the exchange
+      rate is looked up on, so flipping it silently re-keys every currency
+      conversion as well as every balance movement. The two must never be
+      allowed to diverge.
+    read_at: bow/pipeline.py (flag), bow/data/normalize.py, bow/engine/forecast.py
+    switchable: true
+    contract: >
+      CONFIRMED BY CONTRACT, BOTH HALVES. AGENTS.md 6.3: "Count confirmed
+      salary on its settlement date." AGENTS.md 6.1: "For a foreign-
+      currency cash event, use the row for its settlement date and the
+      stated from_currency to to_currency direction." The second sentence
+      confirms the coupling this entry warned about AND independently
+      confirms that a rate is never inverted or triangulated.
+
+  - id: Q17_duplicate_removal
+    question: >
+      Are two rows identical on every field but event_id treated as one event,
+      or kept and flagged?
+    default: remove_full_tuple_duplicates
+    alternative: keep_all_and_flag
+    sample_discriminates: false
+    rationale: >
+      The spec says to ignore duplicate records. INTERACTION WITH RECURRENCE
+      INFERENCE: two same-user, same-day, same-amount, same-category rows are
+      indistinguishable from a genuinely double-billed subscription. Removing
+      one silently changes that series' observed cadence and therefore every
+      projected inflow and outflow built on it. The count is zero on the
+      dataset seen so far, so this rule is currently a no-op; on a dataset
+      where it fires it is the one rule here that can delete real spending.
+      Flip to keep_all_and_flag if the duplicate count is ever non-zero and the
+      recurrence classification changes with it.
+    read_at: bow/data/normalize.py
+    switchable: false
+    contract: >
+      NOT ADDRESSED. AGENTS.md 6 says nothing about duplicate records; the
+      instruction survives only in problem_statement.md's 90-day safety
+      check, which still governs task semantics. The default is unchanged
+      and remains our reading.
+
+  - id: Q18_min_occurrences_for_cadence
+    question: >
+      How many settled occurrences must a series show before a cadence is
+      claimed at all?
+    default: "2"
+    alternative: "3"
+    sample_discriminates: false
+    rationale: >
+      Two occurrences is the weakest claim that is still a pattern: one gap.
+      Three is safer against coincidence but silences every short series
+      entirely, which for a new job or a recently started subscription means
+      projecting no income or no cost at all.
+    read_at: bow/data/recurrence.py
+    switchable: false
+    contract: >
+      PRINCIPLE CONFIRMED, NUMBER NOT. AGENTS.md 6.3: "Detect recurrence
+      only when history supports it." That is the rule this flag
+      implements; how much history counts as support is still ours, and
+      two remains the weakest claim that is still a pattern.
+
+  - id: Q19_series_staleness
+    question: >
+      When is a detected series considered ended rather than merely overdue?
+    default: within_multiple_of_period
+    alternative: project_every_detected_series
+    sample_discriminates: false
+    rationale: >
+      Project only if the last occurrence falls within a configured multiple of
+      the detected period before request_date. Last occurrences in the data
+      seen so far range from 1 to 178 days before the request, so this
+      materially changes which subscriptions are still billing and which
+      salaries are still arriving. Projecting every series regardless of age
+      would resurrect cancelled ones.
+    read_at: bow/data/recurrence.py
+    switchable: false
+    contract: >
+      PRINCIPLE CONFIRMED, THRESHOLD NOT. AGENTS.md 6.3: "Detect
+      recurrence only when history supports it." A series whose last
+      occurrence is long past is history that no longer supports it; the
+      multiple that draws the line is ours.
+
+  - id: Q20_projected_amount
+    question: >
+      Which amount is projected when the occurrences in a series vary?
+    default: most_recent_occurrence
+    alternative: median_of_series
+    sample_discriminates: false
+    rationale: >
+      The most recent occurrence reflects the current price after any increase,
+      which is what the next charge will be. The median is steadier against a
+      one-off spike but lags a genuine change. A warning reports any series
+      where the two differ by more than a configured fraction.
+    read_at: bow/pipeline.py (flag), bow/data/recurrence.py
+    switchable: true
+    contract:
+
+  - id: Q21_income_beyond_scheduled_row
+    question: >
+      For a user with an explicit scheduled income row, does income continue
+      after that row inside the horizon?
+    default: continue_inferred_cadence
+    alternative: scheduled_row_is_the_only_future_income
+    sample_discriminates: false
+    rationale: >
+      The scheduled row fixes the next occurrence; inferred cadence continues
+      past it. Over a 90-day horizon a monthly salary occurs about three times,
+      so treating the scheduled row as the only future income withholds roughly
+      two months of income from every such user and makes them look far poorer
+      than they are.
+    read_at: bow/pipeline.py (flag), bow/data/recurrence.py
+    switchable: true
+    contract: >
+      CONSTRAINED FROM BOTH SIDES, NOT RESOLVED. AGENTS.md 6.3: "Detect
+      recurrence only when history supports it" permits continuing a
+      salary with several settled occurrences; "Do not invent unsupported
+      future income" forbids continuing one without them. The default
+      satisfies both because it continues an INFERRED CADENCE, which by
+      construction requires the history. It is not confirmed, only
+      bounded.
+
+  - id: Q22_series_continuation
+    question: >
+      When an income series goes stale and a new single-occurrence income
+      series appears for the same user in the same category and direction, is
+      the new one a continuation of the old cadence or a separate series?
+    default: treat_as_separate_series
+    alternative: continue_income_series
+    sample_discriminates: true
+    rationale: >
+      DEFAULT FLIPPED OFF. The original justification was that continuation cut
+      users with no projected income from 50 of 275 to 30. THAT JUSTIFICATION IS
+      WITHDRAWN: it measured a change in behaviour, never accuracy. Ground truth
+      then showed that zero projected income is often the CORRECT answer — the
+      published answer for a zero-income gig worker is not_affordable with an
+      empty earliest date, which is exactly what projecting no income produces.
+      A high zero-income count is therefore not evidence of a defect.
+      AGAINST CONTINUATION, MEASURED: request_05 improves 61% with it off, its
+      trough moves from day 7 to day 88 which is the shape every other row has,
+      earliest-date accuracy improves from 7/20 to 8/20, and the
+      terminated-employee defect recorded as L1 in LIMITATIONS.md disappears.
+      The code path and the flag are kept so the alternative stays one config
+      line away, but nothing measured supports switching it on.
+    read_at: bow/pipeline.py (flag), bow/data/recurrence.py
+    switchable: true
+    contract:
+
+  - id: Q23_irregular_income_treatment
+    question: >
+      Is income whose gaps do not cluster projected at some conservative rate,
+      or not projected at all?
+    default: never_project
+    alternative: project_trailing_rate
+    sample_discriminates: true
+    rationale: >
+      RESOLVED AGAINST GROUND TRUTH. Both "do not invent unsupported income"
+      and the financially-safer rule point at never_project, and the sample set
+      contains a user whose only income is irregular platform payouts; the
+      published answer for that request is not_affordable with an empty
+      earliest date, which is what never_project produces and which projecting
+      a trailing rate would contradict.
+    read_at: bow/data/recurrence.py
+    switchable: false
+    contract: >
+      CONFIRMED BY CONTRACT, in addition to the ground-truth resolution
+      already recorded. AGENTS.md 6.3: "Do not invent unsupported future
+      income, expenses, payment options, or other financial facts." Income
+      whose gaps do not cluster supports no rate, so projecting one would
+      invent it.
+
+  - id: Q24_horizon_end_basis
+    question: >
+      Does the forecast horizon end slide with the payment date being
+      evaluated, or stay fixed at request_date plus the horizon?
+    default: fixed_from_request_date
+    alternative: sliding_from_payment_date
+    sample_discriminates: true
+    rationale: >
+      Fixed means every candidate payment date is judged over the same window,
+      so the comparison between dates is like for like. Sliding means a payment
+      on day 40 is checked to day 130, which tests further into a future the
+      data supports less and less. The spec anchors the 90-day safety check to
+      the request, not to the payment.
+    read_at: bow/pipeline.py (flag), bow/engine/capacity.py
+    switchable: true
+    contract:
+
+  - id: Q26_project_irregular_series
+    question: >
+      Should a debit series whose gaps do not cluster still contribute spending
+      to the forecast?
+    default: project_at_trailing_rate
+    alternative: never_project
+    sample_discriminates: true
+    rationale: >
+      PRIOR: yes, project. The claim is that the gaps are scattered but the
+      spending is ongoing, which is what groceries and transport look like — a
+      household does not stop buying food because its purchase dates are
+      irregular. Classifying such a series as having no cadence is correct;
+      concluding it therefore spends nothing is not.
+    read_at: bow/pipeline.py (flag), bow/engine/forecast.py
+    switchable: true
+    contract: >
+      CONFIRMED BY CONTRACT. AGENTS.md 6.3: "Forecast essential variable
+      spending conservatively." That is a positive instruction to forecast
+      it, which is this flag switched on, and the conservatism is carried
+      by the trailing-window rate plus the minimum-occurrences guard. NOTE
+      HONESTLY: L4 in LIMITATIONS.md records that we UNDER-forecast
+      variable spending, and under-forecasting spending is the unsafe
+      direction, so the contract is satisfied in kind and not yet in
+      degree.
+
+  - id: Q27_project_single_occurrence_series
+    question: >
+      Should a debit series with exactly one observed occurrence contribute
+      spending to the forecast?
+    default: never_project
+    alternative: project_at_trailing_rate
+    sample_discriminates: true
+    rationale: >
+      PRIOR: no. One data point is not a pattern, and the same reasoning that
+      keeps Q18 at two occurrences applies here. This is also the most likely
+      source of over-correction: a single large purchase becomes a permanent
+      daily rate.
+    read_at: bow/pipeline.py (flag), bow/engine/forecast.py
+    switchable: true
+    contract: >
+      CONTRACT PULLS BOTH WAYS, DOES NOT RESOLVE. AGENTS.md 6.3 says both
+      "Forecast essential variable spending conservatively" and "Detect
+      recurrence only when history supports it". One occurrence is not
+      history that supports a rate, so the second sentence wins here; the
+      measured result upheld the prior.
+
+  - id: Q28_project_stale_series
+    question: >
+      Should a debit series past its staleness cutoff still contribute spending
+      to the forecast?
+    default: never_project
+    alternative: project_at_trailing_rate
+    sample_discriminates: true
+    rationale: >
+      PRIOR: no. Staleness already encodes the judgement that the series has
+      ended, and loosening it was refused once for exactly this reason.
+      Re-admitting stale series through a different door would undo that
+      decision without arguing against it. Note that the trailing-window rate
+      partly self-corrects here: a series whose occurrences all predate the
+      window contributes nothing regardless of this flag.
+    read_at: bow/pipeline.py (flag), bow/engine/forecast.py
+    switchable: true
+    contract: >
+      CONTRACT PULLS BOTH WAYS, DOES NOT RESOLVE. Same two sentences as
+      Q27. A series past its staleness cutoff has already been judged
+      ended under "detect recurrence only when history supports it"; the
+      measured result upheld the prior.
+
+  - id: Q29_flexible_both_verb
+    question: >
+      When an event is marked reducible_or_stoppable, is it reduced or stopped?
+    default: prefer_reduce
+    alternative: prefer_stop
+    sample_discriminates: true
+    rationale: >
+      The single published sample carrying this case reduced rather than
+      stopped: a streaming subscription marked reducible_or_stoppable was
+      written as reduce_to at its minimum_allowed_amount, not as stop. Reducing
+      is also the smaller intervention, and ranking rule 3 prefers the plan that
+      changes less. One row is thin evidence, so this is recorded as a flag
+      rather than assumed.
+    read_at: bow/pipeline.py (flag), bow/engine/changes.py
+    switchable: true
+    contract: >
+      ELIGIBILITY CONFIRMED, VERB NOT. AGENTS.md 6.2: "Only non-protected,
+      flexible events in a category the user permits may be changed." That
+      settles WHAT may be changed and is now enforced in
+      bow/engine/changes.py, including the case where a user is willing to
+      reduce a category but not to stop it — in which case the Q29
+      preference yields to the permitted verb. Which verb to prefer when
+      both are permitted is still ours.
+

@@ -1,0 +1,250 @@
+# Buy or Wait? — model role registry.
+#
+# Single vendor: Sarvam. One credential, named here by ENVIRONMENT VARIABLE
+# NAME only. The value never appears in this file, in any log line, or anywhere
+# under code/.
+#
+# No call site may construct a model id, endpoint, language code, or sampling
+# parameter inline. Everything a provider call needs is resolved from this file
+# by bow.settings.
+#
+# Probe 5 measured that temperature 0 ALONE is not byte-reproducible on this
+# provider, but temperature 0 with a fixed `seed` is. Every deterministic role
+# therefore pins a seed; distinct values keep the roles independent.
+#
+# Endpoint paths below were read out of the installed sarvamai SDK
+# (sarvamai==0.1.33 raw_client modules), not assumed. See
+# docs/PROVIDER_CAPABILITIES.md for the live probe verdict on each.
+
+version: 1
+
+provider:
+  name: sarvam
+  api_key_env: SARVAM_API_KEY
+  base_url: https://api.sarvam.ai
+  # OpenAI-compatible chat surfaces. v2 carries the non-Sarvam (out-of-set)
+  # models on the same key and credit pool.
+  chat_v1_path: /v1/chat/completions
+  chat_v2_path: /v2/chat/completions
+  # Document AI is an asynchronous job API: create -> poll -> fetch.
+  doc_ai_digitise_path: /doc-ai/v1/job/digitise
+  doc_ai_extract_path: /doc-ai/v1/job/extract
+  doc_ai_status_path: /doc-ai/v1/job/{job_id}/status
+  doc_ai_results_path: /doc-ai/v1/job/{job_id}/results
+  doc_ai_download_path: /doc-ai/v1/job/{job_id}/download-url
+  lang_detect_path: /text-lid
+  # Plan-dependent completion ceiling. Read from here, never assumed.
+  # Starter 4096 / Pro 16384 / Business 128000. Confirmed by probe 7.
+  plan: starter
+  # Measured by probe 7: 32768 accepted, 131072 rejected.
+  max_tokens_ceiling: 32768
+
+# Document AI terminal job states. `partially_completed` is a FLAGGED PARTIAL
+# READ, never a success.
+doc_ai_job_states:
+  success: [completed]
+  partial: [partially_completed]
+  failure: [failed, rejected]
+
+languages:
+  # Languages Sarvam's own models are trained for. Membership decides routing;
+  # nothing routes on an id or a hardcoded literal at a call site.
+  # Sarvam Vision / Sarvam Translate cover 23 + English.
+  document_in_set:
+    [en, as, bn, brx, doi, gu, hi, kn, kok, ks, mai, ml, mni, mr, ne, od, pa,
+     sa, sat, sd, ta, te, ur]
+  # Sarvam-105B / Mayura cover 11 (10 Indic + English).
+  text_in_set: [en, bn, gu, hi, kn, ml, mr, od, pa, ta, te]
+  # Locale suffix Document AI expects for the default read.
+  document_default_language: en-IN
+  # Returned by lang_detect when identification fails. Treated as out-of-set.
+  unknown_code: unknown
+
+# Shared retry policy, referenced by name from each role.
+retry_policies:
+  standard:
+    max_attempts: 4
+    initial_backoff_seconds: 1.0
+    max_backoff_seconds: 30.0
+    multiplier: 2.0
+    jitter_seconds: 0.25
+    retry_on_status: [408, 409, 425, 429, 500, 502, 503, 504]
+  patient:
+    max_attempts: 6
+    initial_backoff_seconds: 2.0
+    max_backoff_seconds: 60.0
+    multiplier: 2.0
+    jitter_seconds: 0.5
+    retry_on_status: [408, 409, 425, 429, 500, 502, 503, 504]
+
+# Shared rate limits, referenced by name from each role.
+# Document AI is documented at 10 requests/minute on ALL plans; the limiter is
+# a real token bucket, not a sleep.
+rate_limits:
+  doc_ai:
+    requests_per_minute: 10
+    burst: 2
+  chat:
+    requests_per_minute: 60
+    burst: 4
+  lang_detect:
+    requests_per_minute: 60
+    burst: 4
+
+# Two roles were removed rather than left configured but uncalled: `resolver`
+# (the bounded action-selection step) and `explain` (a model-written
+# decision_explanation). Neither was built; docs/ARCHITECTURE.md, rejected
+# alternative 2, records the scope decision and its tradeoff. Configuration that
+# promises behaviour the code does not contain is worse than absent, because a
+# reviewer reasonably assumes it is live.
+
+# REMOVED, not left configured-but-uncalled: `resolver` (the bounded
+# action-selection step) and `explain` (a model-written decision_explanation).
+# Neither was built. docs/ARCHITECTURE.md, rejected alternative 2, records the
+# scope decision and its tradeoff. Config that promises behaviour the code does
+# not contain is worse than absent: a reviewer reasonably assumes it is live.
+
+roles:
+
+  vision_digitise:
+    description: Primary document read. Layout- and reading-order-preserving transcription.
+    kind: doc_ai
+    provider_path: doc_ai.digitise
+    endpoint: /doc-ai/v1/job/digitise
+    model: sarvam-vision
+    language: en-IN
+    # MEASURED: "json" and "md" return the IDENTICAL block structure from this
+    # provider — same 19 blocks, same coordinates, and a tabular region as one
+    # block carrying an HTML grid either way. The ZIP download confirms it
+    # (metadata/page_NNN.json holds the same blocks). "json" is kept because it
+    # names the structure honestly; the choice is a no-op, not an improvement.
+    # "markdown" spelled out is rejected with 400.
+    output_format: json
+    content_type: mixed
+    poll_interval_seconds: 3.0
+    poll_timeout_seconds: 300.0
+    timeout_seconds: 60.0
+    retry_policy: patient
+    rate_limit: doc_ai
+    temperature: null
+    top_p: null
+    max_tokens: null
+    reasoning_effort: null
+    seed: null
+
+  vision_extract:
+    description: >
+      Independent cross-check read from a separate job, using an
+      observation-shaped schema. Transcribes candidate labelled figures; it
+      does not choose which figure is the answer.
+    kind: doc_ai
+    provider_path: doc_ai.extract
+    endpoint: /doc-ai/v1/job/extract
+    model: sarvam-vision
+    language: en-IN
+    output_format: json
+    content_type: mixed
+    poll_interval_seconds: 3.0
+    poll_timeout_seconds: 300.0
+    timeout_seconds: 60.0
+    retry_policy: patient
+    rate_limit: doc_ai
+    temperature: null
+    top_p: null
+    max_tokens: null
+    reasoning_effort: null
+    seed: null
+
+  vision_fallback:
+    description: >
+      Out-of-set vision route. Used when the two Sarvam reads fail
+      reconciliation, the job returns partially_completed, or the arithmetic
+      check does not close. See decisions.yaml Q14.
+    kind: chat
+    provider_path: chat.completions
+    endpoint: /v2/chat/completions
+    model: gemma4
+    temperature: 0.0
+    top_p: 1.0
+    seed: 1001
+    max_tokens: 2048
+    reasoning_effort: null
+    timeout_seconds: 120.0
+    retry_policy: standard
+    rate_limit: chat
+
+  lang_detect:
+    description: Language identification. Decides in-set vs out-of-set routing.
+    kind: text
+    provider_path: text.identify_language
+    endpoint: /text-lid
+    # The SDK call takes no model argument; the name is carried so the cost
+    # report can price this role like any other. It is billed by character.
+    model: text-lid
+    temperature: null
+    top_p: null
+    max_tokens: null
+    reasoning_effort: null
+    seed: null
+    timeout_seconds: 30.0
+    retry_policy: standard
+    rate_limit: lang_detect
+
+  message_extract:
+    description: In-set message text to typed deltas.
+    kind: chat
+    provider_path: chat.completions
+    endpoint: /v1/chat/completions
+    model: sarvam-105b
+    temperature: 0.0
+    top_p: 1.0
+    seed: 1002
+    # Reasoning tokens count toward completion tokens, and a truncated response
+    # arrives as HTTP 200 with finish_reason=length and EMPTY content — which
+    # must never be read as "no deltas found". probe_multilingual measured
+    # 2048 truncating 37 of 45 non-English messages and 8192 truncating 13.
+    #
+    # MEASURED A/B, scripts/probe_reasoning_effort.py, same 45-message set,
+    # same prompt, same pinned seed, same temperature, one field different.
+    # Results are in evaluation/reasoning_effort_{current,low}.json:
+    #
+    #                       field omitted        reasoning_effort: low
+    #   schema valid        43/45  (95.6%)       45/45  (100%)
+    #   finish_reason       43 stop, 2 length    45 stop, 0 length
+    #   completion tokens   285,761              244,335   (-14.5%)
+    #   mean per message    6,350                5,430
+    #   cost on the set     INR 22.05            INR 19.02 (-13.7%)
+    #
+    # `low` is cheaper AND strictly more reliable here: both failures in the
+    # omitted arm were length truncations returning empty content, and `low`
+    # had none. Correctness decided this; the saving came with it.
+    #
+    # NOT generalised to other roles. Applying one role's measurement across
+    # the whole config on a single sample is a mistake already made once on
+    # this project; each role is measured on its own or left alone.
+    max_tokens: 16384
+    reasoning_effort: low
+    timeout_seconds: 120.0
+    retry_policy: standard
+    rate_limit: chat
+
+  message_extract_oos:
+    description: Out-of-set message text to typed deltas.
+    kind: chat
+    provider_path: chat.completions
+    endpoint: /v2/chat/completions
+    # Probe 10 measured glm5.2 overloaded (HTTP 429) in one run of three, and
+    # the live price list puts it at ~9x deepseekv4-flash on a workload of
+    # short messages. Live measurement over the docs.
+    model: deepseekv4-flash
+    temperature: 0.0
+    top_p: 1.0
+    seed: 1003
+    # Not independently measured. Sized to match message_extract, because the
+    # truncation failure mode is a property of the budget and the task, not of
+    # the model.
+    max_tokens: 16384
+    reasoning_effort: null
+    timeout_seconds: 120.0
+    retry_policy: standard
+    rate_limit: chat

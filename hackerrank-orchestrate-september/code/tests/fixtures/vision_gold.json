@@ -1,0 +1,28 @@
+{
+  "_comment": [
+    "Hand-derived from docs/DATA_REPORT.md section 5.4 by reading each image.",
+    "TEST FIXTURE ONLY. The runtime path must never read this file;",
+    "tests/test_vision.py asserts that it cannot.",
+    "`correct` is the figure the document says was owed or paid.",
+    "`naive` is what an extractor that took the largest or most total-looking",
+    "number would have returned, recorded so a regression toward it is visible."
+  ],
+  "images": {
+    "image_01": {"correct": "4365000",  "currency": "IDR", "label": "net pay",            "naive": "4780800",  "set": "sample"},
+    "image_02": {"correct": "100000",   "currency": "INR", "label": "balance due",        "naive": "200000",   "set": "sample"},
+    "image_03": {"correct": "41272.00", "currency": "INR", "label": "net amount",         "naive": "13920.00", "set": "sample"},
+    "image_04": {"correct": "2854.00",  "currency": "INR", "label": "item bill",          "naive": "531.0",    "set": "sample"},
+    "image_05": {"correct": "704.05",   "currency": "INR", "label": "amount due",         "naive": "3543.54",  "set": "sample"},
+    "image_06": {"correct": "1995.00",  "currency": "INR", "label": "total",              "naive": "565.00",   "set": "eval"},
+    "image_07": {"correct": "8528",     "currency": "INR", "label": "grand total",        "naive": "8122.00",  "set": "eval"},
+    "image_08": {"correct": "15339.00", "currency": "INR", "label": "total amount received", "naive": "13880.00", "set": "eval"},
+    "image_09": {"correct": "723.00",   "currency": "INR", "label": "total amount received", "naive": "723.00",   "set": "eval"},
+    "image_10": {"correct": "79679.26", "currency": "INR", "label": "balance due",        "naive": "72045.00", "set": "eval"},
+    "image_11": {"correct": "3650.00",  "currency": "INR", "label": "balance",            "naive": "0.00",     "set": "eval"},
+    "image_12": {"correct": "33.50",    "currency": "USD", "label": "total",              "naive": "3350",     "set": "eval"},
+    "image_13": {"correct": "2298",     "currency": "INR", "label": "total paid",         "naive": "1599",     "set": "eval"},
+    "image_14": {"correct": "4543.00",  "currency": "INR", "label": "total",              "naive": "454300",   "set": "eval"},
+    "image_15": {"correct": "9968.00",  "currency": "INR", "label": "total incl taxes",   "naive": "9512.00",  "set": "eval"},
+    "image_16": {"correct": "393.22",   "currency": "INR", "label": "total",              "naive": "333.24",   "set": "eval"}
+  }
+}

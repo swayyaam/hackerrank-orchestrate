@@ -1,0 +1,95 @@
+{
+  "rows_written": 250,
+  "stages": [
+    {
+      "stage": "load",
+      "seconds": 0.764
+    },
+    {
+      "stage": "vision",
+      "seconds": 0.003
+    },
+    {
+      "stage": "messages",
+      "seconds": 1423.512
+    },
+    {
+      "stage": "normalize",
+      "seconds": 0.175
+    },
+    {
+      "stage": "decide",
+      "seconds": 8.298
+    }
+  ],
+  "total_seconds": 1432.752,
+  "counts": {
+    "requests": 250,
+    "events_kept": 25281,
+    "events_dropped": 61,
+    "conversions": 140,
+    "conversions_deferred": 0,
+    "plans_considered": 174,
+    "requests_with_no_safe_plan": 81,
+    "requests_with_blank_amount_evidence": 0,
+    "multiple_eligible_supplied_options": 3,
+    "requests_with_change_candidates": 84,
+    "requests_rescued_by_spending_changes": 4,
+    "vision_reads": 16,
+    "vision_second_read": 12,
+    "vision_unresolved": 0,
+    "messages_processed": 198,
+    "message_deltas_kept": 12,
+    "message_deltas_naming_an_event": 12,
+    "message_extractions_failed": 3,
+    "perception_evidence": 26
+  },
+  "usage": {
+    "calls": {
+      "lang_detect": 198,
+      "message_extract": 171,
+      "message_extract_oos": 39
+    },
+    "prompt_tokens": {
+      "message_extract": 141361,
+      "message_extract_oos": 32891
+    },
+    "completion_tokens": {
+      "message_extract": 1169038,
+      "message_extract_oos": 174652
+    },
+    "characters": {
+      "lang_detect": 49780
+    },
+    "seconds": {
+      "lang_detect": 153.108,
+      "message_extract": 10429.231,
+      "message_extract_oos": 612.434
+    }
+  },
+  "unresolved": [],
+  "unresolved_total": 0,
+  "warnings": {
+    "lifecycle_chain_length_distribution": 0,
+    "lifecycle_parents_with_multiple_children": 0,
+    "lifecycle_orphan_links": 0,
+    "minimum_allowed_amount_without_reducible_flexibility": 0,
+    "reducible_flexibility_without_minimum_allowed_amount": 0,
+    "minimum_allowed_amount_not_below_amount": 0,
+    "flexible_event_in_protected_category": 0,
+    "flexible_event_outside_profile_lists": 0,
+    "fixed_event_in_changeable_category": 28,
+    "currency_pairs_with_more_than_one_rate": 0,
+    "conversion_deferred_pending_amount": 0,
+    "settlement_date_before_event_date": 4,
+    "blank_amount_events": 0,
+    "blank_amount_without_image": 0,
+    "blank_amount_with_multiple_images": 0,
+    "variable_spend_dominates_opening_balance": 56,
+    "series_projected_by_both_paths": 0,
+    "forecast_goes_negative_in_horizon": 20,
+    "trailing_window_with_too_few_occurrences": 744,
+    "message_delta_dropped: asserts a fact no event row supports": 164,
+    "message_delta_dropped: field is outside the allowlist": 1
+  }
+}

@@ -1,0 +1,55 @@
+# Published list prices, transcribed from the vendor's public pricing page and
+# recorded with the date they were read. Nothing here is negotiated, inferred,
+# or derived from an invoice.
+#
+# This file exists so that `evaluation/usage_report.md` can be GENERATED from
+# `evaluation/run_manifest.json` rather than written by hand. A hand-written
+# cost report drifts from the run it claims to describe the moment anything is
+# re-run; a generated one cannot.
+#
+# `unit` says how the service bills, and therefore which counter in the run
+# manifest is the input measure:
+#   tokens      -> prompt_tokens and completion_tokens from the manifest
+#   pages       -> pages
+#   characters  -> characters
+#
+# `units_per_price` is the block size the price is quoted over, so the code
+# needs no magic number: cost = units / units_per_price * price.
+
+version: 1
+
+currency: INR
+#: Only for the parenthetical USD figure in the report. Recorded as a rate with
+#: a date because it is an FX conversion like any other, not a second price list.
+usd_per_unit_of_currency: 0.01133
+usd_rate_read_at: "2026-09-13"
+
+source: docs.sarvam.ai/api-reference-docs/pricing
+read_at: "2026-09-12"
+
+# Priced per model, because the report has to give per-model totals.
+models:
+  sarvam-105b:
+    unit: tokens
+    input_price: 29.28
+    output_price: 73.2
+    units_per_price: 1000000
+  deepseekv4-flash:
+    unit: tokens
+    input_price: 19.8
+    output_price: 59.4
+    units_per_price: 1000000
+  sarvam-vision:
+    unit: pages
+    input_price: 0.50
+    output_price: 0.0
+    units_per_price: 1
+  text-lid:
+    unit: characters
+    input_price: 3.50
+    output_price: 0.0
+    units_per_price: 10000
+
+notes: >
+  Reasoning tokens are billed as completion tokens by this provider, so no
+  separate reasoning line appears: the completion figure already contains them.
